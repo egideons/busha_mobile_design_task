@@ -14,6 +14,9 @@ class Intro extends StatelessWidget {
     //Initialise controller
     Get.put(IntroController());
 
-    return const IntroScaffold();
+    return GestureDetector(
+      onTap: (() => FocusManager.instance.primaryFocus?.unfocus()),
+      child: const IntroScaffold(),
+    );
   }
 }

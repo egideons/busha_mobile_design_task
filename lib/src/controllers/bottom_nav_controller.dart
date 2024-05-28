@@ -6,9 +6,9 @@ import 'package:iconsax/iconsax.dart';
 import '../../app/explore/screen/explore.dart';
 import '../constants/consts.dart';
 
-class PageNavController extends GetxController {
-  static PageNavController get instance {
-    return Get.find<PageNavController>();
+class BottomNavController extends GetxController {
+  static BottomNavController get instance {
+    return Get.find<BottomNavController>();
   }
 
   var bottomNavCurrentIndex = 0.obs;

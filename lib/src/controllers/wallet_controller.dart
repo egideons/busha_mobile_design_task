@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:get/get.dart';
 
 import '../../main.dart';
@@ -9,6 +11,13 @@ class WalletController extends GetxController {
 
   var isLoading = false.obs;
   var hideBalance = false.obs;
+
+  changeVisibility() {
+    hideBalance.value = !hideBalance.value;
+    log("Balance Hidden: ${hideBalance.value}");
+    saveVisibilityState(hideBalance.value);
+    update();
+  }
 
   //=========================== Save card state ============================//
   // Load visibility state from SharedPreferences

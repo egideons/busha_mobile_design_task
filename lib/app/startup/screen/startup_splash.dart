@@ -17,7 +17,10 @@ class StartupSplashscreen extends StatelessWidget {
     return GetBuilder<AuthController>(
       init: AuthController(),
       builder: (controller) {
-        return const StartupSplashScaffold();
+        return GestureDetector(
+          onTap: (() => FocusManager.instance.primaryFocus?.unfocus()),
+          child: const StartupSplashScaffold(),
+        );
       },
     );
   }

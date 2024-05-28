@@ -50,6 +50,9 @@ String nA = "N/A";
 
 String nairaSign = '\u20A6';
 
+//Hide Digits pattern
+const String hideDigits = r'\d';
+
 //password pattern
 const String passwordPattern =
     r'^(?=.*[A-Za-z0-9])(?=.*[^A-Za-z0-9])(?=.*\d).{8,}$';

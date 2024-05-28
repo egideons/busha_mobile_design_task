@@ -1,9 +1,9 @@
 import 'package:get/get.dart';
 
+import '../../app/bottom_nav/screen/bottom_nav.dart';
 import '../../app/explore/screen/explore.dart';
 import '../../app/intro/screen/intro.dart';
 import '../../app/login/screen/login.dart';
-import '../../app/page_nav/screen/page_nav.dart';
 import '../../app/startup/screen/startup_splash.dart';
 
 class Routes {
@@ -11,7 +11,7 @@ class Routes {
   static const startupSplashscreen = "/";
   static const intro = "/intro";
   static const login = "/login";
-  static const pageNav = "/page-nav";
+  static const bottomNav = "/page-nav";
   static const explore = "/explore";
   static const portfolio = "/portfolio";
   static const earn = "/earn";
@@ -28,7 +28,7 @@ class Routes {
     GetPage(name: login, page: () => const Login()),
 
     //Main App
-    GetPage(name: pageNav, page: () => const PageNav()),
+    GetPage(name: bottomNav, page: () => const BottomNav()),
     GetPage(name: explore, page: () => const Explore()),
     // GetPage(name: portfolio, page: () => const Portfolio()),
     // GetPage(name: earn, page: () => const Earn()),

@@ -81,6 +81,7 @@ loginMobilePortraitScreen(colorScheme, media, controller) {
                       focusNode: controller.emailFN,
                       textInputAction: TextInputAction.next,
                       textCapitalization: TextCapitalization.none,
+                      keyboardType: TextInputType.emailAddress,
                       onChanged: controller.emailOnChanged,
                       validator: (value) {
                         return null;
@@ -110,6 +111,7 @@ loginMobilePortraitScreen(colorScheme, media, controller) {
                         focusNode: controller.passwordFN,
                         textInputAction: TextInputAction.done,
                         textCapitalization: TextCapitalization.none,
+                        keyboardType: TextInputType.visiblePassword,
                         obscureText: controller.passwordIsHidden.value,
                         suffix: Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 10),

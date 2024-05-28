@@ -1,25 +1,19 @@
 import 'package:custom_navigation_bar/custom_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:mobile_design_task/src/utils/components/responsive_constants.dart';
 
-import '../../../src/controllers/page_nav_controller.dart';
+import '../../../src/controllers/bottom_nav_controller.dart';
 import '../../../theme/colors.dart';
-import '../content/page_nav_larger_screen.dart';
 
-class PageNavScaffold extends GetView<PageNavController> {
+class BottomNavScaffold extends GetView<BottomNavController> {
   final int? currentIndex;
-  const PageNavScaffold({super.key, this.currentIndex});
+  const BottomNavScaffold({super.key, this.currentIndex});
 
   @override
   Widget build(BuildContext context) {
-    var media = MediaQuery.of(context).size;
     var colorScheme = Theme.of(context).colorScheme;
-    var controller = PageNavController.instance;
+    var controller = BottomNavController.instance;
 
-    if (deviceType(media.width) > 1) {
-      return pageNavLargerScreen(colorScheme, media, context);
-    }
     return Scaffold(
       body: Obx(
         () => controller
