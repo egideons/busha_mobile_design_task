@@ -6,10 +6,9 @@ import '../../../theme/colors.dart';
 todaysTopMovers(
   Size? media,
   ColorScheme colorScheme, {
-  IconData? assetIcon,
+  Widget? assetIcon,
   String? assetLongName,
   String? assetPercentage,
-  Color? assetColor,
   bool? assetValueIncrease,
 }) {
   return Container(
@@ -24,19 +23,15 @@ todaysTopMovers(
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Container(
-          padding: const EdgeInsets.all(10),
-          decoration: ShapeDecoration(
-            color: assetColor ?? kBitcoinColor,
-            shape: const CircleBorder(),
-          ),
-          child: Icon(
-            assetIcon ?? Icons.currency_bitcoin,
-            color: kLightBackgroundColor,
-            weight: 50,
-            size: 32,
-          ),
-        ),
+        assetIcon ??
+            Container(
+              padding: const EdgeInsets.all(10),
+              decoration: ShapeDecoration(
+                color: kBitcoinColor,
+                shape: const CircleBorder(),
+              ),
+            ),
+        kWidthSizedBox,
         kHalfSizedBox,
         Text(
           assetLongName ?? "",
@@ -55,13 +50,17 @@ todaysTopMovers(
               assetValueIncrease == null || assetValueIncrease == true
                   ? Icons.north_east_sharp
                   : Icons.south_east_sharp,
-              color: kSuccessColor,
+              color: assetValueIncrease == null || assetValueIncrease == true
+                  ? kSuccessColor
+                  : kErrorColor,
               size: 16,
             ),
             Text(
               "$assetPercentage%",
               style: defaultTextStyle(
-                color: kSuccessColor,
+                color: assetValueIncrease == null || assetValueIncrease == true
+                    ? kSuccessColor
+                    : kErrorColor,
               ),
             )
           ],
