@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:mobile_design_task/app/bottom_nav/screen/bottom_nav.dart';
+import 'package:mobile_design_task/app/page_nav/screen/page_nav.dart';
 
 import '../constants/consts.dart';
 import 'api_processor_controller.dart';
@@ -103,7 +103,7 @@ class LoginController extends GetxController {
       ApiProcessorController.successSnack("Login successful");
 
       await Get.offAll(
-        () => const BottomNav(),
+        () => const PageNav(),
         routeName: "/bottom-nav",
         fullscreenDialog: true,
         curve: Curves.easeInOut,

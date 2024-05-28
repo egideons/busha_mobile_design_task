@@ -43,7 +43,7 @@ loginMobilePortraitScreen(colorScheme, media, controller) {
               ),
             ),
             Text(
-              "Welcome back! Please enter your registered email address to continue",
+              "Welcome back! Please enter your registered email address to continue.",
               maxLines: 4,
               textAlign: TextAlign.start,
               overflow: TextOverflow.ellipsis,

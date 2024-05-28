@@ -6,15 +6,15 @@ import 'package:iconsax/iconsax.dart';
 import '../../app/explore/screen/explore.dart';
 import '../constants/consts.dart';
 
-class BottomNavController extends GetxController {
-  static BottomNavController get instance {
-    return Get.find<BottomNavController>();
+class PageNavController extends GetxController {
+  static PageNavController get instance {
+    return Get.find<PageNavController>();
   }
 
   var bottomNavCurrentIndex = 0.obs;
 
 //=================== Screens =====================\\
-  bottomNav(colorScheme) => [
+  navScreens(colorScheme) => [
         const Explore(),
         Container(
           color: colorScheme.surface,

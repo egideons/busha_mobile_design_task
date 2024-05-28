@@ -6,7 +6,7 @@ A mobile application test project for [Busha](https://www.busha.co/)
 - Project duration: 4 Days
 - Features:
   - Supports Light and Dark theme
-  - Supports larger screens or landscape mode
+  - Supports larger navScreens or landscape mode
   - Animations
 
 ## How to download the APK

@@ -32,6 +32,7 @@ loginLandscapeLargerScreen(colorScheme, media, controller) {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisSize: MainAxisSize.min,
               children: [
                 Text(
                   "Login to your account",
@@ -44,15 +45,18 @@ loginLandscapeLargerScreen(colorScheme, media, controller) {
                     color: colorScheme.primary,
                   ),
                 ),
-                Text(
-                  "Welcome back! Please enter your registered email address to continue",
-                  maxLines: 4,
-                  textAlign: TextAlign.center,
-                  overflow: TextOverflow.ellipsis,
-                  style: defaultTextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w300,
-                    color: colorScheme.primary,
+                SizedBox(
+                  width: media.width / 2.6,
+                  child: Text(
+                    "Welcome back! Please enter your registered email address to continue.",
+                    maxLines: 4,
+                    textAlign: TextAlign.center,
+                    overflow: TextOverflow.ellipsis,
+                    style: defaultTextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w300,
+                      color: colorScheme.primary,
+                    ),
                   ),
                 ),
               ],
