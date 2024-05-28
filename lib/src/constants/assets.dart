@@ -4,6 +4,12 @@ class Assets {
   static const darkAppIcon = "assets/icons/png/dark_app_Icon.png";
   static const transparentAppIcon = "assets/icons/png/transparent_app_icon.png";
 
+  //Icons
+  static const btcIcon = "assets/icons/png/btc.png";
+  static const ethIcon = "assets/icons/png/eth.png";
+  static const solIcon = "assets/icons/png/sol.png";
+  static const xtzIcon = "assets/icons/png/xtz.png";
+
   //Background
   static const lightBackground = "assets/images/png/light_background.png";
   static const darkBackground = "assets/images/png/dark_background.png";
