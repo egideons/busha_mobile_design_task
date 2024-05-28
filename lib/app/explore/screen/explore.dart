@@ -9,7 +9,7 @@ class Explore extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //Initialize the controller
+    //Initialize the controllers
     Get.put(ExploreController());
 
     return GestureDetector(

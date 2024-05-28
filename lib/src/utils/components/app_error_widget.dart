@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:mobile_design_task/app/startup/screen/startup_splash.dart';
 
 import '../../../theme/colors.dart';
 import '../../constants/consts.dart';
@@ -41,9 +42,17 @@ class AppErrorWidget extends StatelessWidget {
             MyElevatedButton(
               onPressed: onPressed ??
                   () {
-                    Get.close(0);
+                    Get.offAll(
+                      () => const StartupSplashscreen(),
+                      routeName: "/",
+                      fullscreenDialog: true,
+                      curve: Curves.easeInOut,
+                      predicate: (routes) => false,
+                      popGesture: false,
+                      transition: Get.defaultTransition,
+                    );
                   },
-              title: "Go back",
+              title: "Reload",
             ),
           ],
         ),

@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'src/controllers/theme_controller.dart';
+import 'src/controllers/wallet_controller.dart';
 import 'src/routes/routes.dart';
 import 'src/utils/components/app_error_widget.dart';
 import 'theme/app_theme.dart';
@@ -22,6 +23,7 @@ void main() async {
   prefs = await SharedPreferences.getInstance();
 
   Get.put(ThemeController());
+  Get.put(WalletController());
 
   //This is to handle widget errors by showing a custom error widget screen
   // if (kReleaseMode) ErrorWidget.builder = (_) => const AppErrorWidget();
