@@ -5,8 +5,9 @@ A mobile application test project for [Busha](https://www.busha.co/)
 - Developer: Chukwuoma Gideon Chimemerie
 - Project duration: 4 Days
 - Features:
-  - Has Light and Dark theme
+  - Supports Light and Dark theme
   - Supports larger screens or landscape mode
+  - Animations
 
 ## How to download the APK
 

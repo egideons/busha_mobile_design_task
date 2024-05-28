@@ -21,7 +21,7 @@ class BottomNavController extends GetxController {
           child: Center(
             child: Text(
               "Portfolio",
-              style: defaultTextStyle(),
+              style: defaultTextStyle(color: colorScheme.primary),
             ),
           ),
         ),
@@ -30,7 +30,7 @@ class BottomNavController extends GetxController {
           child: Center(
             child: Text(
               "Earn",
-              style: defaultTextStyle(),
+              style: defaultTextStyle(color: colorScheme.primary),
             ),
           ),
         ),
@@ -39,7 +39,7 @@ class BottomNavController extends GetxController {
           child: Center(
             child: Text(
               "Spend",
-              style: defaultTextStyle(),
+              style: defaultTextStyle(color: colorScheme.primary),
             ),
           ),
         ),
@@ -48,7 +48,7 @@ class BottomNavController extends GetxController {
           child: Center(
             child: Text(
               "Connect",
-              style: defaultTextStyle(),
+              style: defaultTextStyle(color: colorScheme.primary),
             ),
           ),
         ),
@@ -57,15 +57,15 @@ class BottomNavController extends GetxController {
   //=================== Nav Items =====================\\
   bottomNavItems(colorScheme) => [
         CustomNavigationBarItem(
-          icon: const Icon(Iconsax.home),
-          selectedIcon: const Icon(Iconsax.home1),
+          icon: const Icon(Iconsax.discover_1),
+          selectedIcon: const Icon(Iconsax.discover5),
           title: Text(
             "Explore",
             style: defaultTextStyle(color: colorScheme.inversePrimary),
           ),
           selectedTitle: Text(
             "Explore",
-            style: defaultTextStyle(color: colorScheme.surface),
+            style: defaultTextStyle(color: colorScheme.primary),
           ),
         ),
         CustomNavigationBarItem(
@@ -77,43 +77,43 @@ class BottomNavController extends GetxController {
           ),
           selectedTitle: Text(
             "Portfolio",
-            style: defaultTextStyle(color: colorScheme.surface),
+            style: defaultTextStyle(color: colorScheme.primary),
           ),
         ),
         CustomNavigationBarItem(
-          icon: const Icon(Iconsax.message),
-          selectedIcon: const Icon(Iconsax.message5),
+          icon: const Icon(Iconsax.percentage_circle),
+          selectedIcon: const Icon(Iconsax.percentage_circle5),
           title: Text(
             "Earn",
             style: defaultTextStyle(color: colorScheme.inversePrimary),
           ),
           selectedTitle: Text(
             "Earn",
-            style: defaultTextStyle(color: colorScheme.surface),
+            style: defaultTextStyle(color: colorScheme.primary),
           ),
         ),
         CustomNavigationBarItem(
-          icon: const Icon(Iconsax.user),
-          selectedIcon: const Icon(Iconsax.user),
+          icon: const Icon(Iconsax.receipt),
+          selectedIcon: const Icon(Iconsax.receipt_15),
           title: Text(
             "Spend",
             style: defaultTextStyle(color: colorScheme.inversePrimary),
           ),
           selectedTitle: Text(
             "Spend",
-            style: defaultTextStyle(color: colorScheme.surface),
+            style: defaultTextStyle(color: colorScheme.primary),
           ),
         ),
         CustomNavigationBarItem(
-          icon: const Icon(Iconsax.user),
-          selectedIcon: const Icon(Iconsax.user),
+          icon: const Icon(Iconsax.link),
+          selectedIcon: const Icon(Iconsax.link_15),
           title: Text(
             "Connect",
             style: defaultTextStyle(color: colorScheme.inversePrimary),
           ),
           selectedTitle: Text(
             "Connect",
-            style: defaultTextStyle(color: colorScheme.surface),
+            style: defaultTextStyle(color: colorScheme.primary),
           ),
         ),
       ];

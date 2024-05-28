@@ -11,6 +11,7 @@ class ExploreScaffold extends GetView<ExploreController> {
     var controller = ExploreController.instance;
 
     return Scaffold(
+      backgroundColor: colorScheme.surface,
       appBar: AppBar(),
       body: SafeArea(
         child: ListView(

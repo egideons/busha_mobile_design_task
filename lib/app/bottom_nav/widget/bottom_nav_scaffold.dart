@@ -20,20 +20,16 @@ class BottomNavScaffold extends GetView<BottomNavController> {
             .bottomNav(colorScheme)[controller.bottomNavCurrentIndex.value],
       ),
       bottomNavigationBar: Obx(
-        () {
-          return CustomNavigationBar(
-            currentIndex:
-                currentIndex ?? controller.bottomNavCurrentIndex.value,
-            backgroundColor: colorScheme.primary,
-            selectedColor: colorScheme.surface,
-            unSelectedColor: colorScheme.inversePrimary,
-            strokeColor: kAccentColor,
-            isFloating: true,
-            borderRadius: const Radius.circular(24),
-            items: controller.bottomNavItems(colorScheme),
-            onTap: (index) => controller.bottomNavCurrentIndex.value = index,
-          );
-        },
+        () => CustomNavigationBar(
+          currentIndex: currentIndex ?? controller.bottomNavCurrentIndex.value,
+          backgroundColor: colorScheme.surface,
+          selectedColor: colorScheme.primary,
+          unSelectedColor: colorScheme.inversePrimary,
+          strokeColor: kAccentColor,
+          isFloating: false,
+          items: controller.bottomNavItems(colorScheme),
+          onTap: (index) => controller.bottomNavCurrentIndex.value = index,
+        ),
       ),
     );
   }
