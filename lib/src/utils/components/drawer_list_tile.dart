@@ -2,41 +2,46 @@ import 'package:flutter/material.dart';
 
 import '../../constants/consts.dart';
 
-class MyListTile extends StatelessWidget {
-  final String text;
-  final IconData icon;
-  final Function()? nav;
-  final double? fontSize;
-  final FontWeight? fontWeight;
-
-  const MyListTile({
-    super.key,
-    required this.text,
-    required this.icon,
-    this.nav,
-    this.fontSize,
-    this.fontWeight,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    var colorScheme = Theme.of(context).colorScheme;
-    return ListTile(
-      onTap: nav,
-      contentPadding: const EdgeInsets.symmetric(vertical: 10, horizontal: 0),
-      leading: Icon(
-        icon,
-        size: 24,
-        color: colorScheme.surface,
+drawerListTile(
+  context, {
+  text,
+  textColor,
+  icon,
+  iconColor,
+  nav,
+  fontSize,
+  fontWeight,
+  selected,
+  selectedColor,
+  selectedTileColor,
+  ShapeBorder? tileShape,
+  hoverColor,
+  focusColor,
+}) {
+  var colorScheme = Theme.of(context).colorScheme;
+  return ListTile(
+    onTap: nav,
+    enableFeedback: true,
+    mouseCursor: SystemMouseCursors.click,
+    selected: selected ?? false,
+    selectedColor: selectedColor,
+    selectedTileColor: selectedTileColor,
+    hoverColor: hoverColor,
+    focusColor: focusColor,
+    style: ListTileStyle.drawer,
+    shape: tileShape,
+    leading: Icon(
+      icon,
+      color: iconColor ?? colorScheme.primary,
+      weight: 50,
+    ),
+    title: Text(
+      text,
+      style: defaultTextStyle(
+        color: textColor ?? colorScheme.primary,
+        fontSize: fontSize ?? 19,
+        fontWeight: fontWeight ?? FontWeight.w700,
       ),
-      title: Text(
-        text,
-        style: defaultTextStyle(
-          color: colorScheme.primary,
-          fontSize: fontSize ?? 19,
-          fontWeight: fontWeight ?? FontWeight.w700,
-        ),
-      ),
-    );
-  }
+    ),
+  );
 }

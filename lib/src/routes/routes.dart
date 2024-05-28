@@ -30,7 +30,7 @@ class Routes {
     //Main App
     GetPage(name: pageNav, page: () => const PageNav()),
     GetPage(name: explore, page: () => const Explore()),
-    // GetPage(name: portfolio, page: () => const Explore()),
+    // GetPage(name: portfolio, page: () => const Portfolio()),
     // GetPage(name: earn, page: () => const Earn()),
     // GetPage(name: spend, page: () => const Spend()),
     // GetPage(name: connect, page: () => const Connect()),
