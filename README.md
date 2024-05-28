@@ -8,6 +8,8 @@ A mobile application test project for [Busha](https://www.busha.co/)
   - Supports Light and Dark theme
   - Supports larger navScreens or landscape mode
   - Animations
+  - Saves login state
+  - Saves wallet balance visibility
 
 ## How to download the APK
 

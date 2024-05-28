@@ -22,3 +22,8 @@ Color kGreenColor = const Color(0xFF12A633);
 Color kErrorColor = Colors.red;
 Color kRedColor = Colors.red;
 Color kWarningColor = Colors.amber;
+
+Color kBitcoinColor = Colors.orange;
+Color kEthereumColor = Colors.indigo;
+Color kTezosColor = Colors.blue;
+Color kSolanaColor = const Color(0xFF41B696);

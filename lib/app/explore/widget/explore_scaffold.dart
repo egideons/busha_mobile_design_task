@@ -69,13 +69,73 @@ class ExploreScaffold extends GetView<ExploreController> {
             Divider(color: colorScheme.inversePrimary),
             kSizedBox,
             sectionHeader(colorScheme, "My assets", onTap: () {}),
-            Column(
+            kHalfSizedBox,
+            Row(
               mainAxisSize: MainAxisSize.max,
               crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Container(),
-                Container(),
+                Container(
+                  padding: const EdgeInsets.all(10),
+                  decoration: ShapeDecoration(
+                    color: kBitcoinColor,
+                    shape: const CircleBorder(),
+                  ),
+                  child: Icon(
+                    Icons.currency_bitcoin,
+                    color: kLightBackgroundColor,
+                    weight: 50,
+                    size: 32,
+                  ),
+                ),
+                Expanded(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          Text(
+                            "Bitcoin",
+                            style: defaultTextStyle(
+                              color: colorScheme.primary,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                          RichText(
+                            text: TextSpan(
+                              text: nairaSign,
+                              style: defaultTextStyle(
+                                fontSize: 18,
+                                color: colorScheme.primary,
+                                fontWeight: FontWeight.w800,
+                              ),
+                              children: [
+                                TextSpan(
+                                  text: convertToCurrency("5000"),
+                                  style: defaultTextStyle(
+                                    fontSize: 32,
+                                    color: colorScheme.primary,
+                                    fontWeight: FontWeight.w800,
+                                  ),
+                                ),
+                                TextSpan(
+                                  text: convertToCurrency(".00"),
+                                  style: defaultTextStyle(
+                                    fontSize: 18,
+                                    color: colorScheme.primary,
+                                    fontWeight: FontWeight.w800,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      )
+                    ],
+                  ),
+                ),
               ],
             ),
             kSizedBox,
