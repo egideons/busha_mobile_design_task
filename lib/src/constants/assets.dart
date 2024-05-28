@@ -8,12 +8,9 @@ class Assets {
   static const lightBackground = "assets/images/png/light_background.png";
   static const darkBackground = "assets/images/png/dark_background.png";
 
-//Icons
-
   //App Images
-
-  //======== PNG =========\\
   static const onboarding1Png = "assets/images/png/onboarding_1.png";
+  static const elon = "assets/images/png/elon.png";
 
 //Placeholder Image
   static const placeholderImage = "assets/images/png/placeholder_image.png";

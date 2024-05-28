@@ -19,6 +19,7 @@ dependencies:
   loading_animation_widget:
   lottie:
   custom_navigation_bar:
+  readmore:
 
 dev_dependencies:
   flutter_test:

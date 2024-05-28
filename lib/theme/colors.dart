@@ -23,7 +23,7 @@ Color kErrorColor = Colors.red;
 Color kRedColor = Colors.red;
 Color kWarningColor = Colors.amber;
 
-Color kBitcoinColor = Colors.orange;
-Color kEthereumColor = Colors.indigo;
+Color kBitcoinColor = const Color(0xFFF7931A);
+Color kEthereumColor = const Color(0xFF627EEA);
 Color kTezosColor = Colors.blue;
-Color kSolanaColor = const Color(0xFF41B696);
+Color kSolanaColor = const Color(0xFF3EC1BD);
