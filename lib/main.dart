@@ -26,8 +26,7 @@ void main() async {
   Get.put(WalletController());
 
   //This is to handle widget errors by showing a custom error widget screen
-  // if (kReleaseMode) ErrorWidget.builder = (_) => const AppErrorWidget();
-  ErrorWidget.builder = (_) => const AppErrorWidget();
+  if (kReleaseMode) ErrorWidget.builder = (_) => const AppErrorWidget();
 
   FlutterError.onError = (details) {
     FlutterError.dumpErrorToConsole(details);

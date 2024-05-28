@@ -7,12 +7,6 @@ class WalletController extends GetxController {
     return Get.find<WalletController>();
   }
 
-  @override
-  void onInit() {
-    WalletController.instance.loadVisibilityState();
-    super.onInit();
-  }
-
   var isLoading = false.obs;
   var hideBalance = false.obs;
 
