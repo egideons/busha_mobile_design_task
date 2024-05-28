@@ -5,6 +5,7 @@ import 'package:mobile_design_task/src/controllers/wallet_controller.dart';
 
 import '../../../src/constants/consts.dart';
 import 'explore_app_bar.dart';
+import 'user_wallet_balance.dart';
 
 exploreLargerScreen(colorScheme, media, context) {
   return Scaffold(
@@ -46,60 +47,7 @@ exploreLargerScreen(colorScheme, media, context) {
               ],
             ),
           ),
-          GetBuilder<WalletController>(
-            init: WalletController(),
-            builder: (controller) => RichText(
-              text: TextSpan(
-                text: nairaSign,
-                style: defaultTextStyle(
-                  fontSize: 18,
-                  color: colorScheme.primary,
-                  fontWeight: FontWeight.w800,
-                ),
-                children: controller.hideBalance.value
-                    ? [
-                        TextSpan(
-                          text: convertToCurrency(
-                            "5000".replaceAll(RegExp(hideDigits), "x"),
-                          ),
-                          style: defaultTextStyle(
-                            fontSize: 32,
-                            color: colorScheme.primary,
-                            fontWeight: FontWeight.w800,
-                          ),
-                        ),
-                        TextSpan(
-                          text: convertToCurrency(
-                            ".00".replaceAll(RegExp(hideDigits), "x"),
-                          ),
-                          style: defaultTextStyle(
-                            fontSize: 18,
-                            color: colorScheme.primary,
-                            fontWeight: FontWeight.w800,
-                          ),
-                        ),
-                      ]
-                    : [
-                        TextSpan(
-                          text: convertToCurrency("5000"),
-                          style: defaultTextStyle(
-                            fontSize: 32,
-                            color: colorScheme.primary,
-                            fontWeight: FontWeight.w800,
-                          ),
-                        ),
-                        TextSpan(
-                          text: convertToCurrency(".00"),
-                          style: defaultTextStyle(
-                            fontSize: 18,
-                            color: colorScheme.primary,
-                            fontWeight: FontWeight.w800,
-                          ),
-                        ),
-                      ],
-              ),
-            ),
-          ),
+          userWalletBalance(colorScheme),
         ],
       ),
     ),
