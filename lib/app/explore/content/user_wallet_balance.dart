@@ -19,7 +19,7 @@ userWalletBalance(colorScheme) {
             ? [
                 TextSpan(
                   text: convertToCurrency(
-                    "5000".replaceAll(RegExp(hideDigits), "x"),
+                    "5000".replaceAll(RegExp(hideDigits), "*"),
                   ),
                   style: defaultTextStyle(
                     fontSize: 32,
@@ -29,7 +29,7 @@ userWalletBalance(colorScheme) {
                 ),
                 TextSpan(
                   text: convertToCurrency(
-                    ".00".replaceAll(RegExp(hideDigits), "x"),
+                    ".00".replaceAll(RegExp(hideDigits), "*"),
                   ),
                   style: defaultTextStyle(
                     fontSize: 18,
