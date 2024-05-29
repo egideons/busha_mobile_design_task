@@ -10,6 +10,7 @@ A mobile application test project for [Busha](https://www.busha.co/)
   - Animations
   - Saves login state
   - Saves wallet balance visibility
+  - Can logout
 
 ## How to download the APK
 
