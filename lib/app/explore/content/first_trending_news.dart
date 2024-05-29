@@ -7,6 +7,7 @@ import '../../../src/constants/consts.dart';
 firstTrendingNews(
   Size media,
   ColorScheme colorScheme, {
+  double? imageHeight,
   String? firstNewsImage,
   String? firstNewsHeading,
   String? firstNewsSource,
@@ -18,7 +19,7 @@ firstTrendingNews(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Container(
-          height: media.height * .3,
+          height: imageHeight ?? media.height * .3,
           decoration: ShapeDecoration(
             color: colorScheme.inversePrimary,
             shape: RoundedRectangleBorder(
