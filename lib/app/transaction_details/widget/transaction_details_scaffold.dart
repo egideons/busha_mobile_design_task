@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:iconsax/iconsax.dart';
 import 'package:mobile_design_task/src/controllers/transaction_details_controller.dart';
 
 import '../../../src/constants/consts.dart';
+import '../content/launch_explorer.dart';
 import '../content/tx_info_section.dart';
 
 class TransactionDetailsScaffold extends GetView<TransactionDetailsController> {
@@ -82,34 +82,8 @@ class TransactionDetailsScaffold extends GetView<TransactionDetailsController> {
                 kSizedBox,
               ],
             ),
-            const SizedBox(height: kDefaultPadding * 4),
-            InkWell(
-              onTap: () {},
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  Icon(
-                    Iconsax.export_2,
-                    color: colorScheme.primary,
-                  ),
-                  Text(
-                    "View on blockchain explorer",
-                    textAlign: TextAlign.start,
-                    overflow: TextOverflow.ellipsis,
-                    style: defaultTextStyle(
-                      fontSize: 16,
-                      color: colorScheme.primary,
-                    ),
-                  ),
-                  Icon(
-                    Icons.chevron_right_rounded,
-                    color: colorScheme.primary,
-                  ),
-                ],
-              ),
-            ),
+            const SizedBox(height: kDefaultPadding * 2),
+            launchExplorer(colorScheme, launch: () {}),
             const SizedBox(height: kDefaultPadding * 4),
           ],
         ),
