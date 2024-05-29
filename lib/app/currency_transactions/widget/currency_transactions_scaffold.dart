@@ -62,47 +62,85 @@ class CurrencyTransactionsScaffold
                   ),
           ),
           body: SafeArea(
-            child: Scrollbar(
-              controller: currencyTransactionController.scrollController,
-              child: currencyTransactionController.isLoading.value
-                  ? Center(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          LoadingAnimationWidget.inkDrop(
-                            color: kAccentColor,
-                            size: 50,
-                          ),
-                          kSizedBox,
-                          Text(
-                            "Fetching your $currencyName Transactions",
-                            textAlign: TextAlign.center,
-                            style: defaultTextStyle(
-                              color: colorScheme.primary,
-                              fontSize: 18,
-                              fontWeight: FontWeight.w500,
+            child: RefreshIndicator(
+              onRefresh: currencyTransactionController.loadTransactions,
+              child: Scrollbar(
+                controller: currencyTransactionController.scrollController,
+                child: GetBuilder<CurrencyTransactionsController>(
+                  builder: (context) {
+                    if (currencyTransactionController.isLoading.value) {
+                      return Center(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            LoadingAnimationWidget.inkDrop(
+                              color: kAccentColor,
+                              size: 50,
                             ),
-                          )
-                        ],
-                      ),
-                    )
-                  : ListView.separated(
-                      itemCount: 30,
-                      controller:
-                          currencyTransactionController.scrollController,
-                      padding: const EdgeInsets.all(10),
-                      separatorBuilder: (context, index) => Column(
-                        children: [
-                          kSizedBox,
-                          Divider(color: colorScheme.inversePrimary),
-                          kSizedBox,
-                        ],
-                      ),
-                      itemBuilder: (BuildContext context, int index) {
-                        return Container();
-                      },
-                    ),
+                            kSizedBox,
+                            Text(
+                              "Fetching your $currencyName Transactions",
+                              textAlign: TextAlign.center,
+                              style: defaultTextStyle(
+                                color: colorScheme.primary,
+                                fontSize: 18,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            )
+                          ],
+                        ),
+                      );
+                    } else {
+                      return ListView.separated(
+                        itemCount: 20,
+                        controller:
+                            currencyTransactionController.scrollController,
+                        padding: const EdgeInsets.all(10),
+                        shrinkWrap: true,
+                        physics: const BouncingScrollPhysics(),
+                        separatorBuilder: (context, index) => Column(
+                          children: [
+                            Divider(color: colorScheme.inversePrimary),
+                          ],
+                        ),
+                        itemBuilder: (context, index) {
+                          return ListTile(
+                            onTap: () {},
+                            enableFeedback: true,
+                            title: Text(
+                              "0000000000000000000142177b09be503dc0817ce2ff0a2736fdc5150e6829a0",
+                              overflow: TextOverflow.ellipsis,
+                              textAlign: TextAlign.start,
+                              style: defaultTextStyle(
+                                color: colorScheme.primary,
+                                fontSize: 16,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                            subtitle: Text(
+                              "2019-08-24 • 15:43",
+                              overflow: TextOverflow.ellipsis,
+                              textAlign: TextAlign.start,
+                              style: defaultTextStyle(
+                                color: colorScheme.inversePrimary,
+                                fontSize: 16,
+                                fontWeight: FontWeight.w400,
+                              ),
+                            ),
+                            trailing: Icon(
+                              Icons.chevron_right_rounded,
+                              color: colorScheme.inversePrimary,
+                              weight: 50,
+                              size: 32,
+                            ),
+                          );
+                        },
+                      );
+                    }
+                  },
+                ),
+              ),
             ),
           ),
         );

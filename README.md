@@ -11,6 +11,10 @@ A mobile application test project for [Busha](https://www.busha.co/)
   - Saves login state
   - Saves wallet balance visibility
   - Can logout
+    - Click "connect" on the bottom nav bar
+    - You will see a logout button on the screen
+    - Click on the button
+    - Then you will logout
 
 ## How to download the APK
 

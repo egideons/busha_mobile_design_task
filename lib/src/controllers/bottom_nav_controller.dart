@@ -2,9 +2,13 @@ import 'package:custom_navigation_bar/custom_navigation_bar.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:mobile_design_task/src/utils/buttons/my_elevated_button.dart';
 
 import '../../app/explore/screen/explore.dart';
+import '../../app/intro/screen/intro.dart';
+import '../../main.dart';
 import '../constants/consts.dart';
+import 'api_processor_controller.dart';
 
 class BottomNavController extends GetxController {
   static BottomNavController get instance {
@@ -21,6 +25,7 @@ class BottomNavController extends GetxController {
           child: Center(
             child: Text(
               "Portfolio",
+              textAlign: TextAlign.center,
               style: defaultTextStyle(color: colorScheme.primary),
             ),
           ),
@@ -30,6 +35,7 @@ class BottomNavController extends GetxController {
           child: Center(
             child: Text(
               "Earn",
+              textAlign: TextAlign.center,
               style: defaultTextStyle(color: colorScheme.primary),
             ),
           ),
@@ -39,6 +45,7 @@ class BottomNavController extends GetxController {
           child: Center(
             child: Text(
               "Spend",
+              textAlign: TextAlign.center,
               style: defaultTextStyle(color: colorScheme.primary),
             ),
           ),
@@ -46,9 +53,26 @@ class BottomNavController extends GetxController {
         Container(
           color: colorScheme.surface,
           child: Center(
-            child: Text(
-              "Connect",
-              style: defaultTextStyle(color: colorScheme.primary),
+            child: SizedBox(
+              width: 200,
+              child: MyElevatedButton(
+                title: "Logout",
+                onPressed: () async {
+                  ApiProcessorController.successSnack("Login successful");
+
+                  await prefs.setBool('isLoggedIn', false);
+
+                  await Get.offAll(
+                    () => const Intro(),
+                    routeName: "/intro",
+                    fullscreenDialog: true,
+                    curve: Curves.easeInOut,
+                    predicate: (routes) => false,
+                    popGesture: false,
+                    transition: Get.defaultTransition,
+                  );
+                },
+              ),
             ),
           ),
         ),

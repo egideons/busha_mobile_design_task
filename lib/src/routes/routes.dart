@@ -6,6 +6,7 @@ import '../../app/explore/screen/explore.dart';
 import '../../app/intro/screen/intro.dart';
 import '../../app/login/screen/login.dart';
 import '../../app/startup/screen/startup_splash.dart';
+import '../../app/transaction_details/screen/transaction_details.dart';
 
 class Routes {
   //Screens Route Names
@@ -39,6 +40,6 @@ class Routes {
       name: currencyTransactions,
       page: () => const CurrencyTransactions(),
     ),
-    // GetPage(name: transactionDetails, page: () => const TransactionDetails()),
+    GetPage(name: transactionDetails, page: () => const TransactionDetails()),
   ];
 }

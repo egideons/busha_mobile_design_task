@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mobile_design_task/src/routes/routes.dart';
 
 class CurrencyTransactionsController extends GetxController {
   static CurrencyTransactionsController get instance {
@@ -8,7 +9,7 @@ class CurrencyTransactionsController extends GetxController {
 
   @override
   void onInit() async {
-    await loadingTransactions();
+    await loadTransactions();
     scrollController.addListener(scrollListener);
     super.onInit();
   }
@@ -49,7 +50,7 @@ class CurrencyTransactionsController extends GetxController {
   }
 
 //================ Load transactions =================//
-  loadingTransactions() async {
+  Future<void> loadTransactions() async {
     isLoading.value = true;
     update();
 
@@ -57,5 +58,10 @@ class CurrencyTransactionsController extends GetxController {
 
     isLoading.value = false;
     update();
+  }
+
+//================ Navigation =================//
+  toTransactionDetails() {
+    Get.toNamed(Routes.transactionDetails, preventDuplicates: true);
   }
 }
