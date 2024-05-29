@@ -90,7 +90,11 @@ exploreMobileScreen(
                   itemBuilder: (context, index) {
                     return myAssets(
                       colorScheme,
-                      onTap: exploreController.toCurrencyTransactions,
+                      onTap: () {
+                        exploreController.toCurrencyTransactions(
+                          exploreController.myAssetShortNames[index],
+                        );
+                      },
                       assetIcon: exploreController.myAssetIcons[index],
                       assetLongName: exploreController.myAssetLongNames[index],
                       assetShortName:

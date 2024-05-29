@@ -12,6 +12,7 @@ loginMobilePortraitScreen(colorScheme, media, controller) {
   return Scaffold(
     backgroundColor: colorScheme.surface,
     appBar: AppBar(
+      backgroundColor: colorScheme.surface,
       leading: IconButton(
         onPressed: () {
           Get.back();

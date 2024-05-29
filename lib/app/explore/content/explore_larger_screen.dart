@@ -93,7 +93,7 @@ exploreLargerScreen(
                         sectionHeader(colorScheme, "My assets", onTap: () {}),
                         kHalfSizedBox,
                         SizedBox(
-                          height: media.height * .46,
+                          height: media.height * .56,
                           child: ListView.separated(
                             itemCount: 3,
                             physics: const NeverScrollableScrollPhysics(),
@@ -101,7 +101,11 @@ exploreLargerScreen(
                             itemBuilder: (context, index) {
                               return myAssets(
                                 colorScheme,
-                                onTap: exploreController.toCurrencyTransactions,
+                                onTap: () {
+                                  exploreController.toCurrencyTransactions(
+                                    exploreController.myAssetShortNames[index],
+                                  );
+                                },
                                 assetIcon:
                                     exploreController.myAssetIcons[index],
                                 assetLongName:

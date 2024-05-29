@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mobile_design_task/app/currency_transactions/screen/currency_transactions.dart';
 import 'package:mobile_design_task/src/controllers/wallet_controller.dart';
-import 'package:mobile_design_task/src/routes/routes.dart';
 
 import '../constants/assets.dart';
 
@@ -145,8 +145,16 @@ class ExploreController extends GetxController {
   }
 
   //Navigate to currency transactions
-  toCurrencyTransactions() {
-    Get.toNamed(Routes.currencyTransactions, preventDuplicates: true);
+  toCurrencyTransactions(String currencyName) async {
+    await Get.to(
+      () => CurrencyTransactions(currencyName: currencyName),
+      routeName: "/currency-transactions",
+      fullscreenDialog: true,
+      curve: Curves.easeInOut,
+      preventDuplicates: true,
+      popGesture: false,
+      transition: Get.defaultTransition,
+    );
   }
 
   Future<void> handleRefresh() async {

@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 
 import '../../app/bottom_nav/screen/bottom_nav.dart';
+import '../../app/currency_transactions/screen/currency_transactions.dart';
 import '../../app/explore/screen/explore.dart';
 import '../../app/intro/screen/intro.dart';
 import '../../app/login/screen/login.dart';
@@ -34,7 +35,10 @@ class Routes {
     //Main App
     GetPage(name: bottomNav, page: () => const BottomNav()),
     GetPage(name: explore, page: () => const Explore()),
-    // GetPage(name: currencyTransactions, page: () => const CurrencyTransactions()),
+    GetPage(
+      name: currencyTransactions,
+      page: () => const CurrencyTransactions(),
+    ),
     // GetPage(name: transactionDetails, page: () => const TransactionDetails()),
   ];
 }

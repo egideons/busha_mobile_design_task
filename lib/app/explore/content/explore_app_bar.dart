@@ -6,6 +6,7 @@ import '../../../theme/colors.dart';
 
 exploreAppBar(colorScheme) {
   return AppBar(
+    backgroundColor: colorScheme.surface,
     leading: IconButton(
       onPressed: () {},
       tooltip: "Scan",

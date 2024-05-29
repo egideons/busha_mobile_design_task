@@ -8,6 +8,7 @@ class CurrencyTransactionsController extends GetxController {
 
   @override
   void onInit() async {
+    await loadingTransactions();
     scrollController.addListener(scrollListener);
     super.onInit();
   }
