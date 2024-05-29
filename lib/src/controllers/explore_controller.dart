@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mobile_design_task/src/controllers/wallet_controller.dart';
+import 'package:mobile_design_task/src/routes/routes.dart';
 
 import '../constants/assets.dart';
 
@@ -140,5 +141,10 @@ class ExploreController extends GetxController {
   //Load Wallet Data
   loadWalletData() async {
     await WalletController.instance.loadVisibilityState();
+  }
+
+  //Navigate to currency transactions
+  toCurrencyTransactions() {
+    Get.toNamed(Routes.currencyTransactions, preventDuplicates: true);
   }
 }

@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
-import '../../../src/controllers/explore_controller.dart';
-import '../widget/explore_scaffold.dart';
+import 'package:mobile_design_task/app/currency_transactions/widget/currency_transactions_scaffold.dart';
+import 'package:mobile_design_task/src/controllers/currency_transactions_controller.dart';
 
 class Explore extends StatelessWidget {
   const Explore({super.key});
@@ -10,11 +9,11 @@ class Explore extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     //Initialize the controller
-    Get.put(ExploreController());
+    Get.put(CurrencyTransactionsController());
 
     return GestureDetector(
       onTap: (() => FocusManager.instance.primaryFocus?.unfocus()),
-      child: const ExploreScaffold(),
+      child: const CurrencyTransactionsScaffold(),
     );
   }
 }

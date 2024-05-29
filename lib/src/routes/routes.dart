@@ -18,6 +18,10 @@ class Routes {
   static const spend = "/spend";
   static const connect = "/connect";
 
+  //Subroutes
+  static const currencyTransactions = "/currency-transactions";
+  static const transactionDetails = "/transaction-details";
+
   //========================= GET PAGES ==========================\\
   static final getPages = [
     //Startup Screens
@@ -30,9 +34,7 @@ class Routes {
     //Main App
     GetPage(name: bottomNav, page: () => const BottomNav()),
     GetPage(name: explore, page: () => const Explore()),
-    // GetPage(name: portfolio, page: () => const Portfolio()),
-    // GetPage(name: earn, page: () => const Earn()),
-    // GetPage(name: spend, page: () => const Spend()),
-    // GetPage(name: connect, page: () => const Connect()),
+    // GetPage(name: currencyTransactions, page: () => const CurrencyTransactions()),
+    // GetPage(name: transactionDetails, page: () => const TransactionDetails()),
   ];
 }
