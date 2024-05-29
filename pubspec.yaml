@@ -20,6 +20,7 @@ dependencies:
   lottie:
   custom_navigation_bar:
   readmore:
+  url_launcher:
 
 dev_dependencies:
   flutter_test:
