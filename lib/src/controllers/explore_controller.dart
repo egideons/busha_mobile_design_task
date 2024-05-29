@@ -30,6 +30,7 @@ class ExploreController extends GetxController {
   var isScrollToTopBtnVisible = false.obs;
 
   //================ Variables =================//
+  var isLoading = false.obs;
   //My Assets
   var myAssetIcons = <dynamic>[
     Image.asset(
@@ -146,5 +147,14 @@ class ExploreController extends GetxController {
   //Navigate to currency transactions
   toCurrencyTransactions() {
     Get.toNamed(Routes.currencyTransactions, preventDuplicates: true);
+  }
+
+  Future<void> handleRefresh() async {
+    isLoading.value = true;
+    update();
+    await Future.delayed(const Duration(seconds: 3));
+
+    isLoading.value = false;
+    update();
   }
 }

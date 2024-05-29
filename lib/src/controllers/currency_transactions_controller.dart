@@ -8,7 +8,6 @@ class CurrencyTransactionsController extends GetxController {
 
   @override
   void onInit() async {
-    await Future.delayed(const Duration(seconds: 3));
     scrollController.addListener(scrollListener);
     super.onInit();
   }
@@ -46,5 +45,16 @@ class CurrencyTransactionsController extends GetxController {
       isScrollToTopBtnVisible.value = false;
       update();
     }
+  }
+
+//================ Load transactions =================//
+  loadingTransactions() async {
+    isLoading.value = true;
+    update();
+
+    await Future.delayed(const Duration(seconds: 3));
+
+    isLoading.value = false;
+    update();
   }
 }
