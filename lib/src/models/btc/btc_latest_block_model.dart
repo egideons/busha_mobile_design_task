@@ -1,11 +1,11 @@
-class BTCLatestBlockModel {
+class BtcLatestBlockModel {
   final String hash;
   final int time;
   final int blockIndex;
   final int height;
   final List<dynamic> txIndexes;
 
-  BTCLatestBlockModel({
+  BtcLatestBlockModel({
     required this.hash,
     required this.time,
     required this.blockIndex,
@@ -13,9 +13,9 @@ class BTCLatestBlockModel {
     required this.txIndexes,
   });
 
-  factory BTCLatestBlockModel.fromJson(Map<String, dynamic>? json) {
+  factory BtcLatestBlockModel.fromJson(Map<String, dynamic>? json) {
     json ??= {};
-    return BTCLatestBlockModel(
+    return BtcLatestBlockModel(
       hash: json['hash'] ?? "",
       time: json['time'] ?? 0,
       blockIndex: json['block_index'] ?? 0,

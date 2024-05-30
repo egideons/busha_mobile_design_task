@@ -112,7 +112,7 @@ class BtcTxsScaffold extends GetView<BtcTxsController> {
                           },
                           hash:
                               "0000000000000000000142177b09be503dc0817ce2ff0a2736fdc5150e6829a0",
-                          time: "2019-08-24 • 15:43",
+                          time: formatUNIXTime(1717014684),
                         );
                       },
                     );

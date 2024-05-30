@@ -7,8 +7,8 @@ import '../../../../src/controllers/xtz_txs_controller.dart';
 import '../../widgets/tx_block.dart';
 import '../../widgets/txs_loader.dart';
 
-class BtcTxsScaffold extends GetView<XtzTxsController> {
-  const BtcTxsScaffold({super.key});
+class XtzTxsScaffold extends GetView<XtzTxsController> {
+  const XtzTxsScaffold({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -69,7 +69,7 @@ class BtcTxsScaffold extends GetView<XtzTxsController> {
             title: controller.isLoading.value
                 ? const SizedBox()
                 : Text(
-                    "BTC Transactions",
+                    "XTZ Transactions",
                     style: defaultTextStyle(
                       fontSize: 18,
                       color: colorScheme.primary,

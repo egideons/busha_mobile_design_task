@@ -1,4 +1,6 @@
-class BtcTxModel {
+import 'package:mobile_design_task/src/models/btc/btc_tx_model.dart';
+
+class BtcTxsBlockResponseModel {
   final String hash;
   final int ver;
   final String prevBlock;
@@ -14,9 +16,9 @@ class BtcTxModel {
   final bool mainChain;
   final int height;
   final int weight;
-  final List<dynamic> tx;
+  final List<BtcTxModel> tx;
 
-  BtcTxModel({
+  BtcTxsBlockResponseModel({
     required this.hash,
     required this.ver,
     required this.prevBlock,
@@ -35,9 +37,9 @@ class BtcTxModel {
     required this.tx,
   });
 
-  factory BtcTxModel.fromJson(Map<String, dynamic>? json) {
+  factory BtcTxsBlockResponseModel.fromJson(Map<String, dynamic>? json) {
     json ??= {};
-    return BtcTxModel(
+    return BtcTxsBlockResponseModel(
       hash: json['hash'] ?? "",
       ver: json['ver'] ?? 0,
       prevBlock: json['prev_block'] ?? "",
@@ -53,7 +55,9 @@ class BtcTxModel {
       mainChain: json['main_chain'] ?? false,
       height: json['height'] ?? 0,
       weight: json['weight'] ?? 0,
-      tx: List<dynamic>.from(json['tx'] ?? []),
+      tx: (json['tx'] as List<dynamic>? ?? [])
+          .map((item) => BtcTxModel.fromJson(item))
+          .toList(),
     );
   }
 
@@ -74,7 +78,7 @@ class BtcTxModel {
       'main_chain': mainChain,
       'height': height,
       'weight': weight,
-      'tx': tx,
+      'tx': tx.map((e) => e.toJson()).toList(),
     };
   }
 }

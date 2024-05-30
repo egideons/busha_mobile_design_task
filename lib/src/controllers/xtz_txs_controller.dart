@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mobile_design_task/src/controllers/explore_controller.dart';
 
-import '../models/tezos/tezos_blocks_model.dart';
+import '../models/xtz/xtz_blocks_model.dart';
 import '../services/api/api_url.dart';
 import '../services/client/client_service.dart';
 

@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mobile_design_task/src/controllers/explore_controller.dart';
 
-import '../models/bitcoin/btc_latest_block_model.dart';
+import '../models/btc/btc_txs_block_response_model.dart';
 import '../services/api/api_url.dart';
 import '../services/client/client_service.dart';
 
@@ -28,8 +28,7 @@ class BtcTxsController extends GetxController {
   }
 
   //Data Handling
-  var btcLatestBlockResponse = BTCLatestBlockModel.fromJson(null).obs;
-  // var btcTxs = <>[].obs;
+  var btcTxModel = BtcTxsBlockResponseModel.fromJson(null).obs;
 
   //================ Controllers =================\\
   var scrollController = ScrollController();
@@ -92,8 +91,11 @@ class BtcTxsController extends GetxController {
         }
 
         //Map the response json to the model provided
+        BtcTxsBlockResponseModel responseModel =
+            BtcTxsBlockResponseModel.fromJson(responseJson);
 
-        //Equate the values of the response model to the bitcoin latest block model variable declared earlier
+        //Assign the values of the response model to the bitcoin latest block model variable declared earlier
+        btcTxModel.value = responseModel;
       }
     } catch (e) {
       log(e.toString());

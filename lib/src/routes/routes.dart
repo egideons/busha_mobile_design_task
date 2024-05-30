@@ -23,7 +23,7 @@ class Routes {
 
   //Subroutes
   static const btcTxs = "/btc-transactions";
-  static const xtzTxs = "/btc-transactions";
+  static const xtzTxs = "/xtz-transactions";
   static const btcTransactionDetails = "/btc-transaction-details";
   static const xtzTransactionDetails = "/xtz-transaction-details";
 

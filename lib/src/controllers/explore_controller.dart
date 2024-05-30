@@ -4,8 +4,8 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mobile_design_task/src/controllers/wallet_controller.dart';
-import 'package:mobile_design_task/src/models/bitcoin/btc_latest_block_model.dart';
-import 'package:mobile_design_task/src/models/tezos/tezos_blocks_model.dart';
+import 'package:mobile_design_task/src/models/btc/btc_latest_block_model.dart';
+import 'package:mobile_design_task/src/models/xtz/xtz_blocks_model.dart';
 import 'package:mobile_design_task/src/services/api/api_url.dart';
 import 'package:mobile_design_task/src/services/client/client_service.dart';
 
@@ -33,7 +33,7 @@ class ExploreController extends GetxController {
   }
 
   //Data Handling
-  var btcLatestBlockResponse = BTCLatestBlockModel.fromJson(null).obs;
+  var btcLatestBlockResponse = BtcLatestBlockModel.fromJson(null).obs;
   var btcHash = "".obs;
   var xtzBlocksResponse = TezosBlockModel.fromJson(null).obs;
 
@@ -116,15 +116,15 @@ class ExploreController extends GetxController {
     update();
 
     //Handle requests
-    await loadBitcoinLatestBlock();
-    // await loadTezosBlocksCount();
+    await loadBtcLatestBlock();
     // await loadTezosBlocks();
+    // await loadXtzLatestBlock();
 
     isLoading.value = false;
     update();
   }
 
-  loadBitcoinLatestBlock() async {
+  loadBtcLatestBlock() async {
     //Api url
     var url = ApiUrl.getBitcoinLatestBlock;
 
@@ -145,8 +145,8 @@ class ExploreController extends GetxController {
         }
 
         //Map the response json to the model provided
-        BTCLatestBlockModel responseModel =
-            BTCLatestBlockModel.fromJson(responseJson);
+        BtcLatestBlockModel responseModel =
+            BtcLatestBlockModel.fromJson(responseJson);
 
         //Assign the values of the response model to the bitcoin latest block model variable declared earlier
         btcLatestBlockResponse.value = responseModel;
@@ -160,7 +160,7 @@ class ExploreController extends GetxController {
     }
   }
 
-  loadTezosBlocksCount() async {
+  loadXtzLatestBlock() async {
     await ClientService.getRequest(ApiUrl.getTezosBlocksCount);
   }
 
