@@ -3,7 +3,7 @@ class BitCoinLatestBlockModel {
   final int time;
   final int blockIndex;
   final int height;
-  final List<int> txIndexes;
+  final List<dynamic> txIndexes;
 
   BitCoinLatestBlockModel({
     required this.hash,
@@ -17,10 +17,10 @@ class BitCoinLatestBlockModel {
     json ??= {};
     return BitCoinLatestBlockModel(
       hash: json['hash'] ?? "",
-      time: json['time'] ?? "",
-      blockIndex: json['block_index'],
-      height: json['height'],
-      txIndexes: List<int>.from(json['txIndexes']),
+      time: json['time'] ?? 0,
+      blockIndex: json['block_index'] ?? 0,
+      height: json['height'] ?? 0,
+      txIndexes: json['txIndexes'] ?? [],
     );
   }
 

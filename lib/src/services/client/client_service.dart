@@ -10,8 +10,8 @@ String contentType = "application/json";
 final dio = Dio();
 
 class ClientService {
-  static Future<Response> getRequest(url) async {
-    Response response;
+  static Future<Response?> getRequest(String url) async {
+    Response? response;
     try {
       response = await dio.getUri(
         Uri.parse(url),
@@ -23,38 +23,24 @@ class ClientService {
           receiveDataWhenStatusError: true,
         ),
       );
-
-      //For Debugging
-      log("This is the response status code: ${response.statusCode}");
-      log("This is the response data: ${response.data}");
+      return response; // Return the response in the try block
     } on DioException catch (e) {
-      // The request was made and the server responded with a status code
-      // that falls out of the range of 2xx and is also not 304.
-      if (e.response != null) {
-        log("Dio Error Response Data: ${e.response!.data}");
-        log("Dio Error Response headers: ${e.response!.headers}");
-        log("Dio Error Response Request Options: ${e.response!.requestOptions}");
-      } else {
-        // Something happened in setting up or sending the request that triggered an Error
+      // Handle Dio exceptions
 
-        //The request was made but there was no internect connection on the device
-        if (e.message!.contains(
-          "The connection errored: Failed host lookup:",
-        )) {
-          log("Dio Request Options Error: ${e.requestOptions}");
-          log("Dio Error Message: ${e.message}");
-          ApiProcessorController.errorSnack("Please connect to the internet");
-        }
-        //The request was made but there was no error message
-        if (e.message == null) {
-          log("Dio Request Options Error: ${e.requestOptions}");
-          log("Dio Error Message: ${e.message}");
-          ApiProcessorController.errorSnack(
-            "Please check your internet connection",
-          );
-        }
+      // The request was made but there was no internet connection on the device
+      if (e.message!.contains("The connection errored: Failed host lookup:")) {
+        log("Dio Request Options Error: ${e.requestOptions}");
+        log("Dio Error Message: ${e.message}");
+        ApiProcessorController.errorSnack("Please connect to the internet");
       }
-      return response;
+      // The request was made but there was no error message
+      else if (e.message == null) {
+        log("Dio Request Options Error: ${e.requestOptions}");
+        log("Dio Error Message: ${e.message}");
+        ApiProcessorController.errorSnack(
+            "Please check your internet connection");
+      }
+      return null; // Return null in the catch block if an exception occurs
     }
   }
 }

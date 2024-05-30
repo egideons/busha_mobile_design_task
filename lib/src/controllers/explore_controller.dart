@@ -1,8 +1,11 @@
-import 'package:dio/dio.dart';
+import 'dart:convert';
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:mobile_design_task/app/currency_transactions/screen/currency_transactions.dart';
 import 'package:mobile_design_task/src/controllers/wallet_controller.dart';
+import 'package:mobile_design_task/src/models/bitcoin/bitcoin_latest_block_model.dart';
+import 'package:mobile_design_task/src/models/tezos/tezos_blocks_model.dart';
 import 'package:mobile_design_task/src/services/api/api_url.dart';
 import 'package:mobile_design_task/src/services/client/client_service.dart';
 
@@ -29,7 +32,9 @@ class ExploreController extends GetxController {
     scrollController.dispose();
   }
 
-  final dio = Dio();
+  //Data Handling
+  var bitcoinLatestBlockResponse = BitCoinLatestBlockModel.fromJson(null).obs;
+  var tezosBlocksResponse = TezosBlockModel.fromJson(null).obs;
 
   //================ Controllers =================\\
   var scrollController = ScrollController();
@@ -105,27 +110,14 @@ class ExploreController extends GetxController {
     await WalletController.instance.loadVisibilityState();
   }
 
-  //Navigate to currency transactions
-  toCurrencyTransactions(String currencyName) async {
-    await Get.to(
-      () => CurrencyTransactions(currencyName: currencyName),
-      routeName: "/currency-transactions",
-      fullscreenDialog: true,
-      curve: Curves.easeInOut,
-      preventDuplicates: true,
-      popGesture: false,
-      transition: Get.defaultTransition,
-    );
-  }
-
   Future<void> loadData() async {
     isLoading.value = true;
     update();
 
     //Handle requests
     await loadBitcoinLatestBlock();
-    await loadTezosBlocksCount();
-    await loadTezosBlocks();
+    // await loadTezosBlocksCount();
+    // await loadTezosBlocks();
 
     isLoading.value = false;
     update();
@@ -136,7 +128,35 @@ class ExploreController extends GetxController {
     var url = ApiUrl.getBitcoinLatestBlock;
 
     //Client service
-    var dio = await ClientService.getRequest(url);
+    var response = await ClientService.getRequest(url);
+
+    if (response == null) {
+      return;
+    }
+    try {
+      if (response.statusCode == 200) {
+        // Convert to json
+        dynamic responseJson;
+        if (response.data is String) {
+          responseJson = jsonDecode(response.data);
+        } else {
+          responseJson = response.data;
+        }
+        //Convert to json
+        // var responseJson = jsonDecode(response.data);
+
+        //Map the response json to the model provided
+        BitCoinLatestBlockModel responseModel =
+            BitCoinLatestBlockModel.fromJson(responseJson);
+
+        //Equate the values of the response model to the bitcoin latest block model variable declared earlier
+        bitcoinLatestBlockResponse.value = responseModel;
+
+        log("This is the response model: $bitcoinLatestBlockResponse");
+      }
+    } catch (e) {
+      log(e.toString());
+    }
   }
 
   loadTezosBlocksCount() async {

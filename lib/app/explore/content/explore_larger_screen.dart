@@ -6,6 +6,7 @@ import 'package:mobile_design_task/src/controllers/wallet_controller.dart';
 import '../../../src/constants/assets.dart';
 import '../../../src/constants/consts.dart';
 import '../../../src/controllers/explore_controller.dart';
+import '../../currency_transactions/screen/currency_transactions.dart';
 import 'explore_app_bar.dart';
 import 'first_trending_news.dart';
 import 'my_assets.dart';
@@ -96,8 +97,17 @@ exploreLargerScreen(
                           children: [
                             myAssets(
                               colorScheme,
-                              onTap: () {
-                                exploreController.toCurrencyTransactions("BTC");
+                              onTap: () async {
+                                await Get.to(
+                                  () => const CurrencyTransactions(
+                                      currencyName: "BTC"),
+                                  routeName: "/currency-transactions",
+                                  fullscreenDialog: true,
+                                  curve: Curves.easeInOut,
+                                  preventDuplicates: true,
+                                  popGesture: false,
+                                  transition: Get.defaultTransition,
+                                );
                               },
                               assetIcon: Image.asset(
                                 Assets.btcIcon,
@@ -128,8 +138,17 @@ exploreLargerScreen(
                             ),
                             myAssets(
                               colorScheme,
-                              onTap: () {
-                                exploreController.toCurrencyTransactions("XTZ");
+                              onTap: () async {
+                                await Get.to(
+                                  () => const CurrencyTransactions(
+                                      currencyName: "XTZ"),
+                                  routeName: "/currency-transactions",
+                                  fullscreenDialog: true,
+                                  curve: Curves.easeInOut,
+                                  preventDuplicates: true,
+                                  popGesture: false,
+                                  transition: Get.defaultTransition,
+                                );
                               },
                               assetIcon: Image.asset(
                                 Assets.xtzIcon,

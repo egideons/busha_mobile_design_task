@@ -4,8 +4,11 @@ import 'package:iconsax/iconsax.dart';
 import 'package:mobile_design_task/src/constants/assets.dart';
 import 'package:mobile_design_task/src/constants/consts.dart';
 import 'package:mobile_design_task/src/controllers/explore_controller.dart';
+import 'package:shimmer/shimmer.dart';
 
 import '../../../src/controllers/wallet_controller.dart';
+import '../../../src/utils/skeletons/skeleton.dart';
+import '../../currency_transactions/screen/currency_transactions.dart';
 import '../content/explore_app_bar.dart';
 import '../content/first_trending_news.dart';
 import '../content/my_assets.dart';
@@ -81,59 +84,105 @@ exploreMobileScreen(
               kSizedBox,
               sectionHeader(colorScheme, "My assets", onTap: () {}),
               kHalfSizedBox,
-              Column(
-                children: [
-                  myAssets(
-                    colorScheme,
-                    onTap: () {
-                      exploreController.toCurrencyTransactions("BTC");
-                    },
-                    assetIcon: Image.asset(
-                      Assets.btcIcon,
-                      fit: BoxFit.contain,
-                      height: 46,
-                      width: 46,
-                    ),
-                    assetLongName: "Bitcoin",
-                    assetShortName: "BTC",
-                    assetValue: "24500000",
-                    assetPercentage: "1.76",
-                    assetValueIncrease: true,
-                  ),
-                  myAssets(
-                    colorScheme,
-                    onTap: () {},
-                    assetIcon: Image.asset(
-                      Assets.ethIcon,
-                      fit: BoxFit.contain,
-                      height: 46,
-                      width: 46,
-                    ),
-                    assetLongName: "Ethereum",
-                    assetShortName: "ETH",
-                    assetValue: "4500",
-                    assetPercentage: "6.76",
-                    assetValueIncrease: false,
-                  ),
-                  myAssets(
-                    colorScheme,
-                    onTap: () {
-                      exploreController.toCurrencyTransactions("XTZ");
-                    },
-                    assetIcon: Image.asset(
-                      Assets.xtzIcon,
-                      fit: BoxFit.contain,
-                      height: 46,
-                      width: 46,
-                    ),
-                    assetLongName: "Tezos",
-                    assetShortName: "xtz",
-                    assetValue: "4500",
-                    assetPercentage: "9.06",
-                    assetValueIncrease: true,
-                  ),
-                ],
-              ),
+              GetBuilder<ExploreController>(
+                  init: ExploreController(),
+                  builder: (controller) {
+                    return controller.isLoading.value
+                        ? Center(
+                            child: ListView.separated(
+                              itemCount: 3,
+                              shrinkWrap: true,
+                              // physics: const NeverScrollableScrollPhysics(),
+                              separatorBuilder: (context, index) =>
+                                  kHalfSizedBox,
+                              itemBuilder: (context, index) =>
+                                  Shimmer.fromColors(
+                                highlightColor: colorScheme.inversePrimary
+                                    .withOpacity(0.04),
+                                baseColor:
+                                    colorScheme.inversePrimary.withOpacity(0.4),
+                                direction: ShimmerDirection.ltr,
+                                child: Skeleton(
+                                  width: media.width,
+                                  height: 40,
+                                  borderRadius: 20,
+                                ),
+                              ),
+                            ),
+                          )
+                        : Column(
+                            children: [
+                              myAssets(
+                                colorScheme,
+                                onTap: () async {
+                                  await Get.to(
+                                    () => const CurrencyTransactions(
+                                      currencyName: "BTC",
+                                    ),
+                                    routeName: "/currency-transactions",
+                                    fullscreenDialog: true,
+                                    curve: Curves.easeInOut,
+                                    preventDuplicates: true,
+                                    popGesture: false,
+                                    transition: Get.defaultTransition,
+                                  );
+                                },
+                                assetIcon: Image.asset(
+                                  Assets.btcIcon,
+                                  fit: BoxFit.contain,
+                                  height: 46,
+                                  width: 46,
+                                ),
+                                assetLongName: "Bitcoin",
+                                assetShortName: "BTC",
+                                assetValue: "24500000",
+                                assetPercentage: "1.76",
+                                assetValueIncrease: true,
+                              ),
+                              myAssets(
+                                colorScheme,
+                                onTap: () {},
+                                assetIcon: Image.asset(
+                                  Assets.ethIcon,
+                                  fit: BoxFit.contain,
+                                  height: 46,
+                                  width: 46,
+                                ),
+                                assetLongName: "Ethereum",
+                                assetShortName: "ETH",
+                                assetValue: "4500",
+                                assetPercentage: "6.76",
+                                assetValueIncrease: false,
+                              ),
+                              myAssets(
+                                colorScheme,
+                                onTap: () async {
+                                  await Get.to(
+                                    () => const CurrencyTransactions(
+                                        currencyName: "XTZ"),
+                                    routeName: "/currency-transactions",
+                                    fullscreenDialog: true,
+                                    curve: Curves.easeInOut,
+                                    preventDuplicates: true,
+                                    popGesture: false,
+                                    transition: Get.defaultTransition,
+                                  );
+                                },
+                                assetIcon: Image.asset(
+                                  Assets.xtzIcon,
+                                  fit: BoxFit.contain,
+                                  height: 46,
+                                  width: 46,
+                                ),
+                                assetLongName: "Tezos",
+                                assetShortName: "xtz",
+                                assetValue: "4500",
+                                assetPercentage: "9.06",
+                                assetValueIncrease: true,
+                              ),
+                            ],
+                          );
+                  }),
               kSizedBox,
               Divider(color: colorScheme.inversePrimary),
               kSizedBox,
@@ -147,7 +196,7 @@ exploreMobileScreen(
                   physics: const ScrollPhysics(),
                   separatorBuilder: (context, index) => kHalfWidthSizedBox,
                   scrollDirection: Axis.horizontal,
-                  itemBuilder: (BuildContext context, int index) {
+                  itemBuilder: (context, index) {
                     return todaysTopMovers(
                       media,
                       colorScheme,

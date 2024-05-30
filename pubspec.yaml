@@ -21,6 +21,7 @@ dependencies:
   custom_navigation_bar:
   readmore:
   url_launcher:
+  shimmer: ^3.0.0-nullsafety.0
 
 dev_dependencies:
   flutter_test:
