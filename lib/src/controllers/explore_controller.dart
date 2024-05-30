@@ -149,7 +149,6 @@ class ExploreController extends GetxController {
 
         //Assign the btcHash variable
         btcHash.value = responseModel.hash;
-        log("This is the btc hash: ${btcHash.value}");
       }
     } catch (e) {
       log(e.toString());
