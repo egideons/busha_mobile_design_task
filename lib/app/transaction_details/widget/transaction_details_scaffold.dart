@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mobile_design_task/src/controllers/transaction_details_controller.dart';
+import 'package:mobile_design_task/src/controllers/url_launch_controller.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../../src/constants/consts.dart';
 import '../content/launch_explorer.dart';
@@ -49,10 +51,13 @@ class TransactionDetailsScaffold extends GetView<TransactionDetailsController> {
             kSizedBox,
             Column(
               children: [
-                txInfoSection(colorScheme, media,
-                    left: "Hash",
-                    right:
-                        "0000000000000000000142177b09be503dc0817ce2ff0a2736fdc5150e6829a0"),
+                txInfoSection(
+                  colorScheme,
+                  media,
+                  left: "Hash",
+                  right:
+                      "0000000000000000000142177b09be503dc0817ce2ff0a2736fdc5150e6829a0",
+                ),
                 kSizedBox,
                 Divider(color: colorScheme.inversePrimary),
                 kSizedBox,
@@ -83,7 +88,12 @@ class TransactionDetailsScaffold extends GetView<TransactionDetailsController> {
               ],
             ),
             const SizedBox(height: kDefaultPadding * 2),
-            launchExplorer(colorScheme, launch: () {}),
+            launchExplorer(colorScheme, launch: () {
+              UrlLaunchController.launchWebView(
+                Uri.parse("https://google.com"),
+                LaunchMode.externalApplication,
+              );
+            }),
             const SizedBox(height: kDefaultPadding * 4),
           ],
         ),

@@ -58,7 +58,7 @@ class BottomNavController extends GetxController {
               child: MyElevatedButton(
                 title: "Logout",
                 onPressed: () async {
-                  ApiProcessorController.successSnack("Login successful");
+                  ApiProcessorController.successSnack("Logout successful");
 
                   await prefs.setBool('isLoggedIn', false);
 
