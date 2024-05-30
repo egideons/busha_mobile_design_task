@@ -1,7 +1,7 @@
 class ApiUrl {
   //Bitcoin
   static const getBitcoinLatestBlock = "https://blockchain.info/latestblock";
-  static getBitcoinBlockTx(blockHash) =>
+  static getBitcoinBlockTx(String? blockHash) =>
       "https://blockchain.info/rawblock/$blockHash";
 
   //Tezos

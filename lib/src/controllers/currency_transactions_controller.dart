@@ -3,8 +3,9 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mobile_design_task/src/controllers/explore_controller.dart';
 
-import '../models/bitcoin/bitcoin_latest_block_model.dart';
+import '../models/bitcoin/btc_latest_block_model.dart';
 import '../models/tezos/tezos_blocks_model.dart';
 import '../services/api/api_url.dart';
 import '../services/client/client_service.dart';
@@ -28,7 +29,7 @@ class CurrencyTransactionsController extends GetxController {
   }
 
   //Data Handling
-  var bitcoinLatestBlockResponse = BitCoinLatestBlockModel.fromJson(null).obs;
+  var bitcoinLatestBlockResponse = BTCLatestBlockModel.fromJson(null).obs;
   // var bitcoinTx = <>[].obs;
   var tezosBlocksResponse = TezosBlockModel.fromJson(null).obs;
 
@@ -71,8 +72,10 @@ class CurrencyTransactionsController extends GetxController {
   }
 
   loadBitcoinTx() async {
+    var exploreController = ExploreController.instance;
+
     //Api url
-    var url = ApiUrl.getBitcoinLatestBlock;
+    var url = ApiUrl.getBitcoinBlockTx(exploreController.btcHash.value);
 
     //Client service
     var response = await ClientService.getRequest(url);
@@ -91,13 +94,8 @@ class CurrencyTransactionsController extends GetxController {
         }
 
         //Map the response json to the model provided
-        BitCoinLatestBlockModel responseModel =
-            BitCoinLatestBlockModel.fromJson(responseJson);
 
         //Equate the values of the response model to the bitcoin latest block model variable declared earlier
-        bitcoinLatestBlockResponse.value = responseModel;
-
-        log("This is the response model: $bitcoinLatestBlockResponse");
       }
     } catch (e) {
       log(e.toString());

@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:developer';
+import 'dart:io';
 
 import 'package:dio/dio.dart';
 
@@ -23,7 +24,9 @@ class ClientService {
           receiveDataWhenStatusError: true,
         ),
       );
-      return response; // Return the response in the try block
+    } on SocketException {
+      ApiProcessorController.errorSnack("Please connect to the internet");
+      return null;
     } on DioException catch (e) {
       // Handle Dio exceptions
 
@@ -41,6 +44,10 @@ class ClientService {
             "Please check your internet connection");
       }
       return null; // Return null in the catch block if an exception occurs
+    } catch (e) {
+      log(e.toString());
+      return null;
     }
+    return response; // Return the response in the try block
   }
 }

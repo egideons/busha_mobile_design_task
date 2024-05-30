@@ -5,5 +5,17 @@ class XtzTransactionsController extends GetxController {
     return Get.find<XtzTransactionsController>();
   }
 
+  // @override
+  // void onInit() {
+  //   // TODO: implement onInit
+  //   super.onInit();
+  // }
+
+// @override
+//   void onClose() {
+//     // TODO: implement onClose
+//     super.onClose();
+//   }
+
   var isLoading = false.obs;
 }

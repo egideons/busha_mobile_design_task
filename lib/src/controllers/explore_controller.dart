@@ -4,7 +4,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mobile_design_task/src/controllers/wallet_controller.dart';
-import 'package:mobile_design_task/src/models/bitcoin/bitcoin_latest_block_model.dart';
+import 'package:mobile_design_task/src/models/bitcoin/btc_latest_block_model.dart';
 import 'package:mobile_design_task/src/models/tezos/tezos_blocks_model.dart';
 import 'package:mobile_design_task/src/services/api/api_url.dart';
 import 'package:mobile_design_task/src/services/client/client_service.dart';
@@ -33,8 +33,9 @@ class ExploreController extends GetxController {
   }
 
   //Data Handling
-  var bitcoinLatestBlockResponse = BitCoinLatestBlockModel.fromJson(null).obs;
-  var tezosBlocksResponse = TezosBlockModel.fromJson(null).obs;
+  var btcLatestBlockResponse = BTCLatestBlockModel.fromJson(null).obs;
+  var btcHash = "".obs;
+  var xtzBlocksResponse = TezosBlockModel.fromJson(null).obs;
 
   //================ Controllers =================\\
   var scrollController = ScrollController();
@@ -144,13 +145,15 @@ class ExploreController extends GetxController {
         }
 
         //Map the response json to the model provided
-        BitCoinLatestBlockModel responseModel =
-            BitCoinLatestBlockModel.fromJson(responseJson);
+        BTCLatestBlockModel responseModel =
+            BTCLatestBlockModel.fromJson(responseJson);
 
-        //Equate the values of the response model to the bitcoin latest block model variable declared earlier
-        bitcoinLatestBlockResponse.value = responseModel;
+        //Assign the values of the response model to the bitcoin latest block model variable declared earlier
+        btcLatestBlockResponse.value = responseModel;
 
-        log("This is the response model: $bitcoinLatestBlockResponse");
+        //Assign the btcHash variable
+        btcHash.value = responseModel.hash;
+        log("This is the btc hash: ${btcHash.value}");
       }
     } catch (e) {
       log(e.toString());

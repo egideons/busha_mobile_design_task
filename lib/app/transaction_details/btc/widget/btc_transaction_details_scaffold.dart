@@ -8,16 +8,16 @@ import '../../../../src/constants/consts.dart';
 import '../content/launch_explorer.dart';
 import '../content/tx_info_section.dart';
 
-class TransactionDetailsScaffold
+class BTCTransactionDetailsScaffold
     extends GetView<BTCTransactionDetailsController> {
-  const TransactionDetailsScaffold({super.key});
+  const BTCTransactionDetailsScaffold({super.key});
 
   @override
   Widget build(BuildContext context) {
     var media = MediaQuery.of(context).size;
     var colorScheme = Theme.of(context).colorScheme;
 
-    var transactionDetailsController = BTCTransactionDetailsController.instance;
+    // var controller = BTCTransactionDetailsController.instance;
 
     return Scaffold(
       backgroundColor: colorScheme.surface,

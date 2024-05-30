@@ -14,7 +14,7 @@ class BTCTransactionDetails extends StatelessWidget {
 
     return GestureDetector(
       onTap: (() => FocusManager.instance.primaryFocus?.unfocus()),
-      child: const TransactionDetailsScaffold(),
+      child: const BTCTransactionDetailsScaffold(),
     );
   }
 }
