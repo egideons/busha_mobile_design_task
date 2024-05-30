@@ -114,7 +114,8 @@ exploreLargerScreen(
                                   onTap: () async {
                                     await Get.to(
                                       () => const CurrencyTransactions(
-                                          currencyName: "BTC"),
+                                        currencyName: "BTC",
+                                      ),
                                       routeName: "/currency-transactions",
                                       fullscreenDialog: true,
                                       curve: Curves.easeInOut,
@@ -153,16 +154,16 @@ exploreLargerScreen(
                                 myAssets(
                                   colorScheme,
                                   onTap: () async {
-                                    await Get.to(
-                                      () => const CurrencyTransactions(
-                                          currencyName: "XTZ"),
-                                      routeName: "/currency-transactions",
-                                      fullscreenDialog: true,
-                                      curve: Curves.easeInOut,
-                                      preventDuplicates: true,
-                                      popGesture: false,
-                                      transition: Get.defaultTransition,
-                                    );
+                                    // await Get.to(
+                                    //   () => const CurrencyTransactions(
+                                    //       currencyName: "XTZ"),
+                                    //   routeName: "/currency-transactions",
+                                    //   fullscreenDialog: true,
+                                    //   curve: Curves.easeInOut,
+                                    //   preventDuplicates: true,
+                                    //   popGesture: false,
+                                    //   transition: Get.defaultTransition,
+                                    // );
                                   },
                                   assetIcon: Image.asset(
                                     Assets.xtzIcon,

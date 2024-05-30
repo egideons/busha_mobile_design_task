@@ -6,7 +6,7 @@ import '../../app/explore/screen/explore.dart';
 import '../../app/intro/screen/intro.dart';
 import '../../app/login/screen/login.dart';
 import '../../app/startup/screen/startup_splash.dart';
-import '../../app/transaction_details/screen/transaction_details.dart';
+import '../../app/transaction_details/btc/screen/btc_transaction_details.dart';
 
 class Routes {
   //Screens Route Names
@@ -22,7 +22,8 @@ class Routes {
 
   //Subroutes
   static const currencyTransactions = "/currency-transactions";
-  static const transactionDetails = "/transaction-details";
+  static const btcTransactionDetails = "/btc-transaction-details";
+  static const xtzTransactionDetails = "/xtz-transaction-details";
 
   //========================= GET PAGES ==========================\\
   static final getPages = [
@@ -40,6 +41,13 @@ class Routes {
       name: currencyTransactions,
       page: () => const CurrencyTransactions(),
     ),
-    GetPage(name: transactionDetails, page: () => const TransactionDetails()),
+    GetPage(
+      name: btcTransactionDetails,
+      page: () => const BTCTransactionDetails(),
+    ),
+    // GetPage(
+    //   name: xtzTransactionDetails,
+    //   page: () => const BTCTransactionDetails(),
+    // ),
   ];
 }

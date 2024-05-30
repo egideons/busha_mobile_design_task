@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:mobile_design_task/src/controllers/transaction_details_controller.dart';
+import 'package:mobile_design_task/src/controllers/btc_transaction_details_controller.dart';
 import 'package:mobile_design_task/src/controllers/url_launch_controller.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import '../../../src/constants/consts.dart';
+import '../../../../src/constants/consts.dart';
 import '../content/launch_explorer.dart';
 import '../content/tx_info_section.dart';
 
-class TransactionDetailsScaffold extends GetView<TransactionDetailsController> {
+class TransactionDetailsScaffold
+    extends GetView<BTCTransactionDetailsController> {
   const TransactionDetailsScaffold({super.key});
 
   @override
@@ -16,7 +17,7 @@ class TransactionDetailsScaffold extends GetView<TransactionDetailsController> {
     var media = MediaQuery.of(context).size;
     var colorScheme = Theme.of(context).colorScheme;
 
-    var transactionDetailsController = TransactionDetailsController.instance;
+    var transactionDetailsController = BTCTransactionDetailsController.instance;
 
     return Scaffold(
       backgroundColor: colorScheme.surface,

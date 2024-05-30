@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
-import 'package:mobile_design_task/app/transaction_details/screen/transaction_details.dart';
+import 'package:mobile_design_task/app/transaction_details/btc/screen/btc_transaction_details.dart';
 import 'package:mobile_design_task/src/controllers/currency_transactions_controller.dart';
 
 import '../../../src/constants/consts.dart';
@@ -88,7 +88,7 @@ class CurrencyTransactionsScaffold
                             colorScheme,
                             toTransactionDetail: () {
                               Get.to(
-                                () => const TransactionDetails(),
+                                () => const BTCTransactionDetails(),
                                 fullscreenDialog: true,
                                 curve: Curves.easeIn,
                                 routeName: "/transaction-details",

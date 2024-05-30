@@ -142,8 +142,6 @@ class ExploreController extends GetxController {
         } else {
           responseJson = response.data;
         }
-        //Convert to json
-        // var responseJson = jsonDecode(response.data);
 
         //Map the response json to the model provided
         BitCoinLatestBlockModel responseModel =
