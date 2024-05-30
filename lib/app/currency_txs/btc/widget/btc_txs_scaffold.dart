@@ -6,7 +6,7 @@ import 'package:mobile_design_task/src/controllers/btc_txs_controller.dart';
 import 'package:mobile_design_task/theme/colors.dart';
 
 import '../../../../src/constants/consts.dart';
-import '../../../transaction_details/btc/screen/btc_transaction_details.dart';
+import '../../../transaction_details/btc/screen/btc_tx_details.dart';
 import '../../widgets/tx_block.dart';
 import '../../widgets/txs_loader.dart';
 

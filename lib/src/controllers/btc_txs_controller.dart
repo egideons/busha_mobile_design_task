@@ -92,10 +92,9 @@ class BtcTxsController extends GetxController {
 
     txLink.value = url;
 
-    log(txLink.value);
-
     //Client service
-    var response = await ClientService.getRequest(url);
+    var response = await ClientService.getRequest(url)
+        .timeout(const Duration(seconds: 20));
 
     if (response == null) {
       return;
