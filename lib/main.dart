@@ -56,7 +56,6 @@ class MyApp extends StatelessWidget {
       theme: androidLightTheme,
       darkTheme: androidDarkTheme,
       themeMode: ThemeController.instance.themeMode.value,
-      // themeMode: ThemeMode.dark,
       scrollBehavior: ScrollConfiguration.of(context).copyWith(
         multitouchDragStrategy: MultitouchDragStrategy.sumAllPointers,
       ),
