@@ -41,4 +41,4 @@ or
 
 ## App Demo
 
-(https://raw.githubusercontent.com/egideons/busha_mobile_design_task/main/path/to/video.mp4)
+[Demo video](https://raw.githubusercontent.com/egideons/busha_mobile_design_task/main/demo/app_demo.mp4)
