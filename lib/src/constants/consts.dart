@@ -63,6 +63,20 @@ const String emailPattern =
 
 //===================== DateTime Formate ==========================\\
 
+String formatUNIXTime(int unixTimestamp) {
+  // Convert the Unix timestamp to a DateTime object
+  DateTime dateTime =
+      DateTime.fromMillisecondsSinceEpoch(unixTimestamp * 1000, isUtc: true);
+
+  // Create a DateFormat object
+  DateFormat dateFormat = DateFormat('yyyy-MM-dd • HH:mm');
+
+  // Format the DateTime object to the desired string
+  String formattedString = dateFormat.format(dateTime.toLocal());
+
+  return formattedString;
+}
+
 String formatDateAndTime(DateTime dateTime) {
   // Format the date as '23 Feb 2020'
   String formattedDate = DateFormat('dd MMM y').format(dateTime);

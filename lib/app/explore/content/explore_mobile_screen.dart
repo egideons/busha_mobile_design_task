@@ -36,7 +36,7 @@ exploreMobileScreen(
       child: Scrollbar(
         controller: exploreController.scrollController,
         child: RefreshIndicator(
-          onRefresh: exploreController.handleRefresh,
+          onRefresh: exploreController.loadData,
           child: ListView(
             controller: exploreController.scrollController,
             padding: const EdgeInsets.all(10),

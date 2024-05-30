@@ -1,7 +1,10 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mobile_design_task/app/currency_transactions/screen/currency_transactions.dart';
 import 'package:mobile_design_task/src/controllers/wallet_controller.dart';
+import 'package:mobile_design_task/src/services/api/api_url.dart';
+import 'package:mobile_design_task/src/services/client/client_service.dart';
 
 import '../constants/assets.dart';
 
@@ -11,8 +14,11 @@ class ExploreController extends GetxController {
   }
 
   @override
-  void onInit() {
-    loadWalletData();
+  void onInit() async {
+    await loadWalletData();
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      await loadData();
+    });
     scrollController.addListener(scrollListener);
     super.onInit();
   }
@@ -22,6 +28,8 @@ class ExploreController extends GetxController {
     super.onClose();
     scrollController.dispose();
   }
+
+  final dio = Dio();
 
   //================ Controllers =================\\
   var scrollController = ScrollController();
@@ -110,15 +118,32 @@ class ExploreController extends GetxController {
     );
   }
 
-  Future<void> handleRefresh() async {
+  Future<void> loadData() async {
     isLoading.value = true;
     update();
-    await Future.delayed(const Duration(seconds: 3));
+
+    //Handle requests
+    await loadBitcoinLatestBlock();
+    await loadTezosBlocksCount();
+    await loadTezosBlocks();
 
     isLoading.value = false;
     update();
   }
 
-  loadBitcoinLatestBlock() async {}
-  loadTezosLatestBlock() async {}
+  loadBitcoinLatestBlock() async {
+    //Api url
+    var url = ApiUrl.getBitcoinLatestBlock;
+
+    //Client service
+    var dio = await ClientService.getRequest(url);
+  }
+
+  loadTezosBlocksCount() async {
+    await ClientService.getRequest(ApiUrl.getTezosBlocksCount);
+  }
+
+  loadTezosBlocks() async {
+    await ClientService.getRequest(ApiUrl.getTezosBlocks);
+  }
 }
