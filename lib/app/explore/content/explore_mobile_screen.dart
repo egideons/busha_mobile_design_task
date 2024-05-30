@@ -7,7 +7,7 @@ import 'package:mobile_design_task/src/controllers/explore_controller.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
 import '../../../src/controllers/wallet_controller.dart';
-import '../../currency_transactions/btc/screen/btc_txs.dart';
+import '../../../src/routes/routes.dart';
 import '../content/explore_app_bar.dart';
 import '../content/first_trending_news.dart';
 import '../content/my_assets.dart';
@@ -99,17 +99,10 @@ exploreMobileScreen(
                     children: [
                       myAssets(
                         colorScheme,
-                        onTap: () async {
-                          await Get.to(
-                            () => const BtcTxs(
-                              currencyName: "BTC",
-                            ),
-                            routeName: "/currency-transactions",
-                            fullscreenDialog: true,
-                            curve: Curves.easeInOut,
+                        onTap: () {
+                          Get.toNamed(
+                            Routes.btcTxs,
                             preventDuplicates: true,
-                            popGesture: false,
-                            transition: Get.defaultTransition,
                           );
                         },
                         assetIcon: Image.asset(
@@ -141,15 +134,10 @@ exploreMobileScreen(
                       ),
                       myAssets(
                         colorScheme,
-                        onTap: () async {
-                          await Get.to(
-                            () => const BtcTxs(currencyName: "XTZ"),
-                            routeName: "/currency-transactions",
-                            fullscreenDialog: true,
-                            curve: Curves.easeInOut,
+                        onTap: () {
+                          Get.toNamed(
+                            Routes.xtzTxs,
                             preventDuplicates: true,
-                            popGesture: false,
-                            transition: Get.defaultTransition,
                           );
                         },
                         assetIcon: Image.asset(

@@ -1,7 +1,8 @@
 import 'package:get/get.dart';
 
 import '../../app/bottom_nav/screen/bottom_nav.dart';
-import '../../app/currency_transactions/btc/screen/btc_txs.dart';
+import '../../app/currency_txs/btc/screen/btc_txs.dart';
+import '../../app/currency_txs/xtz/screen/xtz_txs.dart';
 import '../../app/explore/screen/explore.dart';
 import '../../app/intro/screen/intro.dart';
 import '../../app/login/screen/login.dart';
@@ -21,7 +22,8 @@ class Routes {
   static const connect = "/connect";
 
   //Subroutes
-  static const currencyTransactions = "/currency-transactions";
+  static const btcTxs = "/btc-transactions";
+  static const xtzTxs = "/btc-transactions";
   static const btcTransactionDetails = "/btc-transaction-details";
   static const xtzTransactionDetails = "/xtz-transaction-details";
 
@@ -38,8 +40,12 @@ class Routes {
     GetPage(name: bottomNav, page: () => const BottomNav()),
     GetPage(name: explore, page: () => const Explore()),
     GetPage(
-      name: currencyTransactions,
+      name: btcTxs,
       page: () => const BtcTxs(),
+    ),
+    GetPage(
+      name: xtzTxs,
+      page: () => const XtzTxs(),
     ),
     GetPage(
       name: btcTransactionDetails,

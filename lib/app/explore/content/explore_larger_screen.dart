@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:mobile_design_task/src/controllers/wallet_controller.dart';
+import 'package:mobile_design_task/src/routes/routes.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
 import '../../../src/constants/assets.dart';
 import '../../../src/constants/consts.dart';
 import '../../../src/controllers/explore_controller.dart';
-import '../../currency_transactions/btc/screen/btc_txs.dart';
 import 'explore_app_bar.dart';
 import 'first_trending_news.dart';
 import 'my_assets.dart';
@@ -111,17 +111,10 @@ exploreLargerScreen(
                               children: [
                                 myAssets(
                                   colorScheme,
-                                  onTap: () async {
-                                    await Get.to(
-                                      () => const BtcTxs(
-                                        currencyName: "BTC",
-                                      ),
-                                      routeName: "/currency-transactions",
-                                      fullscreenDialog: true,
-                                      curve: Curves.easeInOut,
+                                  onTap: () {
+                                    Get.toNamed(
+                                      Routes.btcTxs,
                                       preventDuplicates: true,
-                                      popGesture: false,
-                                      transition: Get.defaultTransition,
                                     );
                                   },
                                   assetIcon: Image.asset(
@@ -154,16 +147,10 @@ exploreLargerScreen(
                                 myAssets(
                                   colorScheme,
                                   onTap: () async {
-                                    // await Get.to(
-                                    //   () => const BtcTxs(
-                                    //       currencyName: "XTZ"),
-                                    //   routeName: "/currency-transactions",
-                                    //   fullscreenDialog: true,
-                                    //   curve: Curves.easeInOut,
-                                    //   preventDuplicates: true,
-                                    //   popGesture: false,
-                                    //   transition: Get.defaultTransition,
-                                    // );
+                                    Get.toNamed(
+                                      Routes.xtzTxs,
+                                      preventDuplicates: true,
+                                    );
                                   },
                                   assetIcon: Image.asset(
                                     Assets.xtzIcon,

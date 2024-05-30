@@ -1,28 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
-import 'package:mobile_design_task/app/transaction_details/btc/screen/btc_transaction_details.dart';
-import 'package:mobile_design_task/src/controllers/btc_txs_controller.dart';
 
 import '../../../../src/constants/consts.dart';
-import '../content/btc_txs_loader.dart';
-import '../content/tx_block.dart';
+import '../../../../src/controllers/xtz_txs_controller.dart';
+import '../../widgets/tx_block.dart';
+import '../../widgets/txs_loader.dart';
 
-class BtcTxsScaffold extends GetView<BtcTxsController> {
-  const BtcTxsScaffold({super.key, this.currencyName});
-
-  final String? currencyName;
+class BtcTxsScaffold extends GetView<XtzTxsController> {
+  const BtcTxsScaffold({super.key});
 
   @override
   Widget build(BuildContext context) {
     var colorScheme = Theme.of(context).colorScheme;
 
-    var currencyTransactionController = BtcTxsController.instance;
-
-    return GetBuilder<BtcTxsController>(
-      init: BtcTxsController(),
+    return GetBuilder<XtzTxsController>(
+      init: XtzTxsController(),
       builder: (controller) {
-        if (currencyTransactionController.isLoading.value) {
+        if (controller.isLoading.value) {
           return Scaffold(
             appBar: AppBar(
               backgroundColor: colorScheme.surface,
@@ -40,22 +35,21 @@ class BtcTxsScaffold extends GetView<BtcTxsController> {
             ),
             body: SafeArea(
               child: Center(
-                child: btcTxsLoader(colorScheme, currencyName: currencyName),
+                child: txsLoader(colorScheme, currencyName: "XTZ"),
               ),
             ),
           );
         }
         return Scaffold(
           backgroundColor: colorScheme.surface,
-          floatingActionButton:
-              currencyTransactionController.isScrollToTopBtnVisible.value
-                  ? FloatingActionButton.small(
-                      onPressed: currencyTransactionController.scrollToTop,
-                      foregroundColor: colorScheme.surface,
-                      backgroundColor: colorScheme.primary,
-                      child: const Icon(Iconsax.arrow_up_2),
-                    )
-                  : const SizedBox(),
+          floatingActionButton: controller.isScrollToTopBtnVisible.value
+              ? FloatingActionButton.small(
+                  onPressed: controller.scrollToTop,
+                  foregroundColor: colorScheme.surface,
+                  backgroundColor: colorScheme.primary,
+                  child: const Icon(Iconsax.arrow_up_2),
+                )
+              : const SizedBox(),
           appBar: AppBar(
             backgroundColor: colorScheme.surface,
             leading: controller.isLoading.value
@@ -75,7 +69,7 @@ class BtcTxsScaffold extends GetView<BtcTxsController> {
             title: controller.isLoading.value
                 ? const SizedBox()
                 : Text(
-                    "$currencyName Transactions",
+                    "BTC Transactions",
                     style: defaultTextStyle(
                       fontSize: 18,
                       color: colorScheme.primary,
@@ -85,15 +79,14 @@ class BtcTxsScaffold extends GetView<BtcTxsController> {
           ),
           body: SafeArea(
             child: RefreshIndicator(
-              onRefresh: currencyTransactionController.loadTransactions,
+              onRefresh: controller.loadTransactions,
               child: Scrollbar(
-                controller: currencyTransactionController.scrollController,
-                child: GetBuilder<BtcTxsController>(
+                controller: controller.scrollController,
+                child: GetBuilder<XtzTxsController>(
                   builder: (controller) {
                     return ListView.separated(
                       itemCount: 20,
-                      controller:
-                          currencyTransactionController.scrollController,
+                      controller: controller.scrollController,
                       padding: const EdgeInsets.all(10),
                       shrinkWrap: true,
                       physics: const BouncingScrollPhysics(),
@@ -103,18 +96,18 @@ class BtcTxsScaffold extends GetView<BtcTxsController> {
                         ],
                       ),
                       itemBuilder: (context, index) {
-                        return btcTxBlock(
+                        return txBlock(
                           colorScheme,
                           toTransactionDetail: () {
-                            Get.to(
-                              () => const BTCTransactionDetails(),
-                              fullscreenDialog: true,
-                              curve: Curves.easeIn,
-                              routeName: "/transaction-details",
-                              preventDuplicates: true,
-                              popGesture: true,
-                              transition: Get.defaultTransition,
-                            );
+                            // Get.to(
+                            //   () => const BTCTransactionDetails(),
+                            //   fullscreenDialog: true,
+                            //   curve: Curves.easeIn,
+                            //   routeName: "/transaction-details",
+                            //   preventDuplicates: true,
+                            //   popGesture: true,
+                            //   transition: Get.defaultTransition,
+                            // );
                           },
                           hash:
                               "0000000000000000000142177b09be503dc0817ce2ff0a2736fdc5150e6829a0",

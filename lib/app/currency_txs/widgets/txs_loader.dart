@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 
-import '../../../../src/constants/consts.dart';
-import '../../../../theme/colors.dart';
+import '../../../src/constants/consts.dart';
+import '../../../theme/colors.dart';
 
-btcTxsLoader(ColorScheme colorScheme, {String? currencyName}) {
+txsLoader(ColorScheme colorScheme, {String? currencyName}) {
   return Center(
     child: Column(
       mainAxisAlignment: MainAxisAlignment.center,
