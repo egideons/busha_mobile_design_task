@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mobile_design_task/src/controllers/wallet_controller.dart';
 import 'package:mobile_design_task/src/models/btc/btc_latest_block_model.dart';
-import 'package:mobile_design_task/src/models/xtz/xtz_blocks_model.dart';
 import 'package:mobile_design_task/src/services/api/api_url.dart';
 import 'package:mobile_design_task/src/services/client/client_service.dart';
 
@@ -35,7 +34,6 @@ class ExploreController extends GetxController {
   //Data Handling
   var btcLatestBlockResponse = BtcLatestBlockModel.fromJson(null).obs;
   var btcHash = "".obs;
-  var xtzBlocksResponse = TezosBlockModel.fromJson(null).obs;
 
   //================ Controllers =================\\
   var scrollController = ScrollController();
@@ -117,8 +115,6 @@ class ExploreController extends GetxController {
 
     //Handle requests
     await loadBtcLatestBlock();
-    // await loadTezosBlocks();
-    // await loadXtzLatestBlock();
 
     isLoading.value = false;
     update();
@@ -158,13 +154,5 @@ class ExploreController extends GetxController {
     } catch (e) {
       log(e.toString());
     }
-  }
-
-  loadXtzLatestBlock() async {
-    await ClientService.getRequest(ApiUrl.getTezosBlocksCount);
-  }
-
-  loadTezosBlocks() async {
-    await ClientService.getRequest(ApiUrl.getTezosBlocks);
   }
 }

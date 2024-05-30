@@ -3,7 +3,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:mobile_design_task/src/controllers/explore_controller.dart';
+import 'package:mobile_design_task/src/models/xtz/xtz_tx_block_model.dart';
 
 import '../models/xtz/xtz_blocks_model.dart';
 import '../services/api/api_url.dart';
@@ -17,6 +17,7 @@ class XtzTxsController extends GetxController {
   @override
   void onInit() async {
     await loadTransactions();
+    await loadInitialData();
     scrollController.addListener(scrollListener);
     super.onInit();
   }
@@ -27,23 +28,23 @@ class XtzTxsController extends GetxController {
     scrollController.dispose();
   }
 
-  //Data Handling
-  var tezosBlocksResponse = TezosBlockModel.fromJson(null).obs;
-  // var xtzTxs = <>[].obs;
+  //================ Variables =================\\
+  var xtzBlocksResponse = XtzBlockResponseModel.fromJson(null).obs;
+  var xtzTxsItems = <XtzTxBlockModel>[].obs;
+  List<XtzTxBlockModel> displayedXtzTxs = [];
+  var txsLink = "".obs;
 
   //================ Controllers =================\\
   var scrollController = ScrollController();
 
   //================ Booleans =================\\
   var isScrollToTopBtnVisible = false.obs;
-
-  //================ Variables =================\\
   var isLoading = false.obs;
+  var hasMoreData = true.obs;
 
   //================ Scroll to Top =================//
   void scrollToTop() {
-    scrollController.animateTo(0,
-        duration: const Duration(seconds: 1), curve: Curves.fastOutSlowIn);
+    scrollController.jumpTo(0);
   }
 
 //================ Scroll Listener =================//
@@ -60,23 +61,36 @@ class XtzTxsController extends GetxController {
     }
   }
 
-//================ Load transactions =================//
-  Future<void> loadTransactions() async {
-    isLoading.value = true;
+  //Load Data
+  Future<void> loadInitialData() async {
+    displayedXtzTxs = xtzTxsItems.take(20).toList();
+    hasMoreData.value = displayedXtzTxs.length < xtzTxsItems.length;
     update();
-    await loadBitcoinTx();
+  }
+
+  //Load More
+  Future<void> loadMore() async {
+    int currentLength = displayedXtzTxs.length;
+
+    await Future.delayed(const Duration(seconds: 2)); // Simulate loading delay
+
+    displayedXtzTxs.addAll(xtzTxsItems.skip(currentLength).take(20));
+    hasMoreData.value = displayedXtzTxs.length < xtzTxsItems.length;
     isLoading.value = false;
     update();
   }
 
-  loadBitcoinTx() async {
-    var exploreController = ExploreController.instance;
-
+//================ Load transactions =================//
+  Future<void> loadTransactions() async {
+    isLoading.value = true;
+    update();
     //Api url
-    var url = ApiUrl.getBitcoinBlockTx(exploreController.btcHash.value);
+    var getXtzBlocks = ApiUrl.getTezosBlocks;
+    txsLink.value = getXtzBlocks;
 
     //Client service
-    var response = await ClientService.getRequest(url);
+    var response = await ClientService.getRequest(getXtzBlocks)
+        .timeout(const Duration(seconds: 20));
 
     if (response == null) {
       return;
@@ -92,11 +106,19 @@ class XtzTxsController extends GetxController {
         }
 
         //Map the response json to the model provided
+        XtzBlockResponseModel responseModel =
+            XtzBlockResponseModel.fromJson(responseJson);
 
-        //Equate the values of the response model to the bitcoin latest block model variable declared earlier
+        //Assign the values of the response model to the Tezos block model variable declared earlier
+        xtzBlocksResponse.value = responseModel;
+
+        //Assign the values of the btc txs to the block txs model variable declared earlier
+        xtzTxsItems.value = xtzBlocksResponse.value.blocks;
       }
     } catch (e) {
       log(e.toString());
     }
+    isLoading.value = false;
+    update();
   }
 }
