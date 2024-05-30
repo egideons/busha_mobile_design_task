@@ -4,6 +4,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mobile_design_task/src/controllers/explore_controller.dart';
+import 'package:mobile_design_task/src/models/btc/btc_tx_model.dart';
 
 import '../models/btc/btc_txs_block_response_model.dart';
 import '../services/api/api_url.dart';
@@ -17,6 +18,7 @@ class BtcTxsController extends GetxController {
   @override
   void onInit() async {
     await loadTransactions();
+    await loadInitialData();
     scrollController.addListener(scrollListener);
     super.onInit();
   }
@@ -27,22 +29,23 @@ class BtcTxsController extends GetxController {
     scrollController.dispose();
   }
 
-  //Data Handling
+  //================ Variables =================\\
   var btcTxModel = BtcTxsBlockResponseModel.fromJson(null).obs;
+  var btcTxs = <BtcTxModel>[].obs;
+  List<BtcTxModel> displayedBtcTxs = [];
+  var txLink = "".obs;
 
   //================ Controllers =================\\
   var scrollController = ScrollController();
 
   //================ Booleans =================\\
   var isScrollToTopBtnVisible = false.obs;
-
-  //================ Variables =================\\
   var isLoading = false.obs;
+  var hasMoreData = true.obs;
 
   //================ Scroll to Top =================//
   void scrollToTop() {
-    scrollController.animateTo(0,
-        duration: const Duration(seconds: 1), curve: Curves.fastOutSlowIn);
+    scrollController.jumpTo(0);
   }
 
 //================ Scroll Listener =================//
@@ -59,20 +62,37 @@ class BtcTxsController extends GetxController {
     }
   }
 
-//================ Load transactions =================//
-  Future<void> loadTransactions() async {
-    isLoading.value = true;
+  //Load Data
+  Future<void> loadInitialData() async {
+    displayedBtcTxs = btcTxs.take(20).toList();
+    hasMoreData.value = displayedBtcTxs.length < btcTxs.length;
     update();
-    await loadBitcoinTx();
+  }
+
+  //Load More
+  Future<void> loadMore() async {
+    int currentLength = displayedBtcTxs.length;
+
+    await Future.delayed(const Duration(seconds: 2)); // Simulate loading delay
+
+    displayedBtcTxs.addAll(btcTxs.skip(currentLength).take(20));
+    hasMoreData.value = displayedBtcTxs.length < btcTxs.length;
     isLoading.value = false;
     update();
   }
 
-  loadBitcoinTx() async {
+//================ Load transactions =================/
+  Future<void> loadTransactions() async {
+    isLoading.value = true;
+    update();
     var exploreController = ExploreController.instance;
 
     //Api url
     var url = ApiUrl.getBitcoinBlockTx(exploreController.btcHash.value);
+
+    txLink.value = url;
+
+    log(txLink.value);
 
     //Client service
     var response = await ClientService.getRequest(url);
@@ -96,9 +116,14 @@ class BtcTxsController extends GetxController {
 
         //Assign the values of the response model to the bitcoin latest block model variable declared earlier
         btcTxModel.value = responseModel;
+
+        //Assign the values of the btc txs to the block txs model variable declared earlier
+        btcTxs.value = btcTxModel.value.tx;
       }
     } catch (e) {
       log(e.toString());
     }
+    isLoading.value = false;
+    update();
   }
 }

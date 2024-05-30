@@ -8,16 +8,24 @@ import '../../../../src/constants/consts.dart';
 import '../content/launch_explorer.dart';
 import '../content/tx_info_section.dart';
 
-class BTCTransactionDetailsScaffold
-    extends GetView<BTCTransactionDetailsController> {
-  const BTCTransactionDetailsScaffold({super.key});
+class BtcTxDetailsScaffold extends GetView<BTCTransactionDetailsController> {
+  const BtcTxDetailsScaffold({
+    super.key,
+    this.time,
+    this.hash,
+    this.blockIndex,
+    this.size,
+    this.height,
+    this.txLink,
+  });
+
+  final int? time;
+  final String? hash, size, blockIndex, height, txLink;
 
   @override
   Widget build(BuildContext context) {
     var media = MediaQuery.of(context).size;
     var colorScheme = Theme.of(context).colorScheme;
-
-    // var controller = BTCTransactionDetailsController.instance;
 
     return Scaffold(
       backgroundColor: colorScheme.surface,
@@ -56,33 +64,34 @@ class BTCTransactionDetailsScaffold
                   colorScheme,
                   media,
                   left: "Hash",
-                  right:
-                      "0000000000000000000142177b09be503dc0817ce2ff0a2736fdc5150e6829a0",
+                  right: hash,
                 ),
                 kSizedBox,
                 Divider(color: colorScheme.inversePrimary),
                 kSizedBox,
                 txInfoSection(colorScheme, media,
-                    left: "Time", right: "2019-08-24 • 15:43"),
-                kSizedBox,
-                Divider(color: colorScheme.inversePrimary),
-                kSizedBox,
-                txInfoSection(colorScheme, media, left: "Size", right: "9195"),
+                    left: "Time", right: formatUNIXTime(time ?? 1717014684)),
                 kSizedBox,
                 Divider(color: colorScheme.inversePrimary),
                 kSizedBox,
                 txInfoSection(colorScheme, media,
-                    left: "Block Index", right: "818044"),
+                    left: "Size", right: size ?? ""),
                 kSizedBox,
                 Divider(color: colorScheme.inversePrimary),
                 kSizedBox,
                 txInfoSection(colorScheme, media,
-                    left: "Height", right: "154595"),
+                    left: "Block Index", right: blockIndex),
                 kSizedBox,
                 Divider(color: colorScheme.inversePrimary),
                 kSizedBox,
                 txInfoSection(colorScheme, media,
-                    left: "Received time", right: "2019-08-24 • 15:43"),
+                    left: "Height", right: height),
+                kSizedBox,
+                Divider(color: colorScheme.inversePrimary),
+                kSizedBox,
+                txInfoSection(colorScheme, media,
+                    left: "Received time",
+                    right: formatUNIXTime(time ?? 1717014684)),
                 kSizedBox,
                 Divider(color: colorScheme.inversePrimary),
                 kSizedBox,
@@ -93,7 +102,7 @@ class BTCTransactionDetailsScaffold
               colorScheme,
               launch: () {
                 UrlLaunchController.launchWebView(
-                  Uri.parse("https://google.com"),
+                  Uri.parse(txLink ?? "https://google.com"),
                   LaunchMode.externalApplication,
                 );
               },

@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
-import 'package:mobile_design_task/app/transaction_details/btc/screen/btc_transaction_details.dart';
+import 'package:loadmore_listview/loadmore_listview.dart';
 import 'package:mobile_design_task/src/controllers/btc_txs_controller.dart';
+import 'package:mobile_design_task/theme/colors.dart';
 
 import '../../../../src/constants/consts.dart';
+import '../../../transaction_details/btc/screen/btc_transaction_details.dart';
 import '../../widgets/tx_block.dart';
 import '../../widgets/txs_loader.dart';
 
@@ -79,45 +81,56 @@ class BtcTxsScaffold extends GetView<BtcTxsController> {
                   ),
           ),
           body: SafeArea(
-            child: RefreshIndicator(
-              onRefresh: controller.loadTransactions,
-              child: Scrollbar(
+            child: Scrollbar(
+              controller: controller.scrollController,
+              child: LoadMoreListView.separated(
+                itemCount: controller.displayedBtcTxs.length +
+                    (controller.hasMoreData.value ? 1 : 0),
+                refreshColor: kAccentColor,
+                refreshBackgroundColor: colorScheme.surface,
                 controller: controller.scrollController,
-                child: GetBuilder<BtcTxsController>(
-                  builder: (controller) {
-                    return ListView.separated(
-                      itemCount: 20,
-                      controller: controller.scrollController,
-                      padding: const EdgeInsets.all(10),
-                      shrinkWrap: true,
-                      physics: const BouncingScrollPhysics(),
-                      separatorBuilder: (context, index) => Column(
-                        children: [
-                          Divider(color: colorScheme.inversePrimary),
-                        ],
-                      ),
-                      itemBuilder: (context, index) {
-                        return txBlock(
-                          colorScheme,
-                          toTransactionDetail: () {
-                            Get.to(
-                              () => const BTCTransactionDetails(),
-                              fullscreenDialog: true,
-                              curve: Curves.easeIn,
-                              routeName: "/transaction-details",
-                              preventDuplicates: true,
-                              popGesture: true,
-                              transition: Get.defaultTransition,
-                            );
-                          },
-                          hash:
-                              "0000000000000000000142177b09be503dc0817ce2ff0a2736fdc5150e6829a0",
-                          time: formatUNIXTime(1717014684),
-                        );
-                      },
-                    );
-                  },
+                hasMoreItem: controller.hasMoreData.value,
+                onLoadMore: controller.loadMore,
+                onRefresh: controller.loadTransactions,
+                loadMoreWidget: Container(
+                  margin: const EdgeInsets.all(20.0),
+                  alignment: Alignment.center,
+                  child: CircularProgressIndicator(
+                    valueColor: AlwaysStoppedAnimation(kAccentColor),
+                  ),
                 ),
+                separatorBuilder: (context, index) => Column(
+                  children: [
+                    Divider(color: colorScheme.inversePrimary),
+                  ],
+                ),
+                itemBuilder: (context, index) {
+                  return txBlock(
+                    colorScheme,
+                    hash: controller.btcTxs[index].hash,
+                    time: formatUNIXTime(controller.btcTxs[index].time),
+                    toTransactionDetail: () {
+                      Get.to(
+                        () => BtcTxDetails(
+                          time: controller.btcTxs[index].time,
+                          hash: controller.btcTxs[index].hash,
+                          size: controller.btcTxs[index].size.toString(),
+                          blockIndex:
+                              controller.btcTxs[index].blockIndex.toString(),
+                          height:
+                              controller.btcTxs[index].blockHeight.toString(),
+                          txLink: controller.txLink.value,
+                        ),
+                        fullscreenDialog: true,
+                        curve: Curves.easeIn,
+                        routeName: "/btc-tx-details",
+                        preventDuplicates: true,
+                        popGesture: true,
+                        transition: Get.defaultTransition,
+                      );
+                    },
+                  );
+                },
               ),
             ),
           ),

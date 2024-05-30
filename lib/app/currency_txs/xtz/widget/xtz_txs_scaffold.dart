@@ -100,7 +100,7 @@ class XtzTxsScaffold extends GetView<XtzTxsController> {
                           colorScheme,
                           toTransactionDetail: () {
                             // Get.to(
-                            //   () => const BTCTransactionDetails(),
+                            //   () => const BtcTxDetails(),
                             //   fullscreenDialog: true,
                             //   curve: Curves.easeIn,
                             //   routeName: "/transaction-details",
