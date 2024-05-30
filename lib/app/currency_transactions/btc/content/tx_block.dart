@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mobile_design_task/src/constants/consts.dart';
 
-transactionBlock(
+btcTxBlock(
   ColorScheme colorScheme, {
   Function()? toTransactionDetail,
   String? hash,

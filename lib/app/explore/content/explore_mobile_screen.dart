@@ -7,7 +7,7 @@ import 'package:mobile_design_task/src/controllers/explore_controller.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
 import '../../../src/controllers/wallet_controller.dart';
-import '../../currency_transactions/screen/currency_transactions.dart';
+import '../../currency_transactions/btc/screen/btc_txs.dart';
 import '../content/explore_app_bar.dart';
 import '../content/first_trending_news.dart';
 import '../content/my_assets.dart';
@@ -101,7 +101,7 @@ exploreMobileScreen(
                         colorScheme,
                         onTap: () async {
                           await Get.to(
-                            () => const CurrencyTransactions(
+                            () => const BtcTxs(
                               currencyName: "BTC",
                             ),
                             routeName: "/currency-transactions",
@@ -143,8 +143,7 @@ exploreMobileScreen(
                         colorScheme,
                         onTap: () async {
                           await Get.to(
-                            () =>
-                                const CurrencyTransactions(currencyName: "XTZ"),
+                            () => const BtcTxs(currencyName: "XTZ"),
                             routeName: "/currency-transactions",
                             fullscreenDialog: true,
                             curve: Curves.easeInOut,

@@ -10,9 +10,9 @@ import '../models/tezos/tezos_blocks_model.dart';
 import '../services/api/api_url.dart';
 import '../services/client/client_service.dart';
 
-class CurrencyTransactionsController extends GetxController {
-  static CurrencyTransactionsController get instance {
-    return Get.find<CurrencyTransactionsController>();
+class BtcTxsController extends GetxController {
+  static BtcTxsController get instance {
+    return Get.find<BtcTxsController>();
   }
 
   @override

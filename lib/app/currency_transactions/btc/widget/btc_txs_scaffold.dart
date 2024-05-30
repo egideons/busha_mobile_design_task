@@ -2,15 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:mobile_design_task/app/transaction_details/btc/screen/btc_transaction_details.dart';
-import 'package:mobile_design_task/src/controllers/currency_transactions_controller.dart';
+import 'package:mobile_design_task/src/controllers/btc_txs_controller.dart';
 
-import '../../../src/constants/consts.dart';
-import '../content/loader.dart';
-import '../content/transaction_block.dart';
+import '../../../../src/constants/consts.dart';
+import '../content/btc_txs_loader.dart';
+import '../content/tx_block.dart';
 
-class CurrencyTransactionsScaffold
-    extends GetView<CurrencyTransactionsController> {
-  const CurrencyTransactionsScaffold({super.key, this.currencyName});
+class BtcTxsScaffold extends GetView<BtcTxsController> {
+  const BtcTxsScaffold({super.key, this.currencyName});
 
   final String? currencyName;
 
@@ -18,10 +17,10 @@ class CurrencyTransactionsScaffold
   Widget build(BuildContext context) {
     var colorScheme = Theme.of(context).colorScheme;
 
-    var currencyTransactionController = CurrencyTransactionsController.instance;
+    var currencyTransactionController = BtcTxsController.instance;
 
-    return GetBuilder<CurrencyTransactionsController>(
-      init: CurrencyTransactionsController(),
+    return GetBuilder<BtcTxsController>(
+      init: BtcTxsController(),
       builder: (controller) {
         if (currencyTransactionController.isLoading.value) {
           return Scaffold(
@@ -41,7 +40,7 @@ class CurrencyTransactionsScaffold
             ),
             body: SafeArea(
               child: Center(
-                child: loader(colorScheme, currencyName: currencyName),
+                child: btcTxsLoader(colorScheme, currencyName: currencyName),
               ),
             ),
           );
@@ -89,7 +88,7 @@ class CurrencyTransactionsScaffold
               onRefresh: currencyTransactionController.loadTransactions,
               child: Scrollbar(
                 controller: currencyTransactionController.scrollController,
-                child: GetBuilder<CurrencyTransactionsController>(
+                child: GetBuilder<BtcTxsController>(
                   builder: (controller) {
                     return ListView.separated(
                       itemCount: 20,
@@ -104,7 +103,7 @@ class CurrencyTransactionsScaffold
                         ],
                       ),
                       itemBuilder: (context, index) {
-                        return transactionBlock(
+                        return btcTxBlock(
                           colorScheme,
                           toTransactionDetail: () {
                             Get.to(

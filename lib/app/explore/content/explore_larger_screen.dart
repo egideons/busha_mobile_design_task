@@ -7,7 +7,7 @@ import 'package:skeletonizer/skeletonizer.dart';
 import '../../../src/constants/assets.dart';
 import '../../../src/constants/consts.dart';
 import '../../../src/controllers/explore_controller.dart';
-import '../../currency_transactions/screen/currency_transactions.dart';
+import '../../currency_transactions/btc/screen/btc_txs.dart';
 import 'explore_app_bar.dart';
 import 'first_trending_news.dart';
 import 'my_assets.dart';
@@ -113,7 +113,7 @@ exploreLargerScreen(
                                   colorScheme,
                                   onTap: () async {
                                     await Get.to(
-                                      () => const CurrencyTransactions(
+                                      () => const BtcTxs(
                                         currencyName: "BTC",
                                       ),
                                       routeName: "/currency-transactions",
@@ -155,7 +155,7 @@ exploreLargerScreen(
                                   colorScheme,
                                   onTap: () async {
                                     // await Get.to(
-                                    //   () => const CurrencyTransactions(
+                                    //   () => const BtcTxs(
                                     //       currencyName: "XTZ"),
                                     //   routeName: "/currency-transactions",
                                     //   fullscreenDialog: true,

@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 
 import '../../app/bottom_nav/screen/bottom_nav.dart';
-import '../../app/currency_transactions/screen/currency_transactions.dart';
+import '../../app/currency_transactions/btc/screen/btc_txs.dart';
 import '../../app/explore/screen/explore.dart';
 import '../../app/intro/screen/intro.dart';
 import '../../app/login/screen/login.dart';
@@ -39,7 +39,7 @@ class Routes {
     GetPage(name: explore, page: () => const Explore()),
     GetPage(
       name: currencyTransactions,
-      page: () => const CurrencyTransactions(),
+      page: () => const BtcTxs(),
     ),
     GetPage(
       name: btcTransactionDetails,
