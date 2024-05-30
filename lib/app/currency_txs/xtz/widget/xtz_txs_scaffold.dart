@@ -6,6 +6,7 @@ import 'package:loadmore_listview/loadmore_listview.dart';
 import '../../../../src/constants/consts.dart';
 import '../../../../src/controllers/xtz_txs_controller.dart';
 import '../../../../theme/colors.dart';
+import '../../../transaction_details/xtz/screen/xtz_tx_details.dart';
 import '../../widgets/tx_block.dart';
 import '../../widgets/txs_loader.dart';
 
@@ -108,26 +109,27 @@ class XtzTxsScaffold extends GetView<XtzTxsController> {
                     colorScheme,
                     hash: controller.xtzTxsItems[index].hash,
                     time: formatDateAndTime(
-                        controller.xtzTxsItems[index].timestamp),
+                      controller.xtzTxsItems[index].timestamp,
+                    ),
                     toTransactionDetail: () {
-                      // Get.to(
-                      //   () => BtcTxDetails(
-                      //     time: controller.xtzTxsItems[index].time,
-                      //     hash: controller.xtzTxsItems[index].hash,
-                      //     size: controller.xtzTxsItems[index].size.toString(),
-                      //     blockIndex: controller.xtzTxsItems[index].blockIndex
-                      //         .toString(),
-                      //     height: controller.xtzTxsItems[index].blockHeight
-                      //         .toString(),
-                      //     txLink: controller.txLink.value,
-                      //   ),
-                      //   fullscreenDialog: true,
-                      //   curve: Curves.easeIn,
-                      //   routeName: "/btc-tx-details",
-                      //   preventDuplicates: true,
-                      //   popGesture: true,
-                      //   transition: Get.defaultTransition,
-                      // );
+                      Get.to(
+                        () => XtzTxDetails(
+                          txLink: controller.txsLink.value,
+                          time: controller.xtzTxsItems[index].timestamp,
+                          hash: controller.xtzTxsItems[index].hash,
+                          bonus: controller.xtzTxsItems[index].bonus.toString(),
+                          reward:
+                              controller.xtzTxsItems[index].reward.toString(),
+                          fees: controller.xtzTxsItems[index].fees.toString(),
+                          level: controller.xtzTxsItems[index].level.toString(),
+                        ),
+                        fullscreenDialog: true,
+                        curve: Curves.easeIn,
+                        routeName: "/xtz-tx-details",
+                        preventDuplicates: true,
+                        popGesture: true,
+                        transition: Get.defaultTransition,
+                      );
                     },
                   );
                 },

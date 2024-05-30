@@ -7,19 +7,20 @@ import '../../../../src/constants/consts.dart';
 import '../../widgets/launch_explorer.dart';
 import '../../widgets/tx_info_section.dart';
 
-class BtcTxDetailsScaffold extends StatelessWidget {
-  const BtcTxDetailsScaffold({
+class XtzTxDetailsScaffold extends StatelessWidget {
+  const XtzTxDetailsScaffold({
     super.key,
     this.time,
     this.hash,
-    this.blockIndex,
-    this.size,
-    this.height,
+    this.reward,
+    this.level,
+    this.bonus,
     this.txLink,
+    this.fees,
   });
 
-  final int? time;
-  final String? hash, size, blockIndex, height, txLink;
+  final DateTime? time;
+  final String? hash, level, reward, bonus, txLink, fees;
 
   @override
   Widget build(BuildContext context) {
@@ -72,7 +73,7 @@ class BtcTxDetailsScaffold extends StatelessWidget {
                   colorScheme,
                   media,
                   left: "Time",
-                  right: formatUNIXTime(time ?? 1717014684),
+                  right: formatDateAndTime(time ?? DateTime.now()),
                 ),
                 kSizedBox,
                 Divider(color: colorScheme.inversePrimary),
@@ -80,8 +81,8 @@ class BtcTxDetailsScaffold extends StatelessWidget {
                 txInfoSection(
                   colorScheme,
                   media,
-                  left: "Size",
-                  right: size ?? "",
+                  left: "Level",
+                  right: level ?? "",
                 ),
                 kSizedBox,
                 Divider(color: colorScheme.inversePrimary),
@@ -89,8 +90,8 @@ class BtcTxDetailsScaffold extends StatelessWidget {
                 txInfoSection(
                   colorScheme,
                   media,
-                  left: "Block Index",
-                  right: blockIndex ?? "",
+                  left: "Reward",
+                  right: reward ?? "",
                 ),
                 kSizedBox,
                 Divider(color: colorScheme.inversePrimary),
@@ -98,8 +99,8 @@ class BtcTxDetailsScaffold extends StatelessWidget {
                 txInfoSection(
                   colorScheme,
                   media,
-                  left: "Height",
-                  right: height ?? "",
+                  left: "Bonus",
+                  right: bonus ?? "",
                 ),
                 kSizedBox,
                 Divider(color: colorScheme.inversePrimary),
@@ -107,8 +108,8 @@ class BtcTxDetailsScaffold extends StatelessWidget {
                 txInfoSection(
                   colorScheme,
                   media,
-                  left: "Received time",
-                  right: formatUNIXTime(time ?? 1717014684),
+                  left: "Fees",
+                  right: fees ?? "",
                 ),
                 kSizedBox,
                 Divider(color: colorScheme.inversePrimary),

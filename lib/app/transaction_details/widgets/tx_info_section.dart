@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../src/constants/consts.dart';
+import '../../../src/constants/consts.dart';
 
 txInfoSection(
   ColorScheme colorScheme,
