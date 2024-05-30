@@ -41,4 +41,8 @@ or
 
 ## App Demo
 
-[Demo video](https://raw.githubusercontent.com/egideons/busha_mobile_design_task/main/demo/app_demo.mp4)
+[![Demo video](https://raw.githubusercontent.com/egideons/busha_mobile_design_task/main/assets/icons/png/dark_app_icon.png)](https://raw.githubusercontent.com/egideons/busha_mobile_design_task/main/demo/app_demo.mp4)
+
+## Watch on Youtube
+
+[![Watch the video](https://raw.githubusercontent.com/egideons/busha_mobile_design_task/main/assets/icons/png/dark_app_icon.png)](https://youtu.be/v2B9cFBR64g?si=QPm1fOU5XFFLEHt5)
