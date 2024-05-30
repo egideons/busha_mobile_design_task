@@ -31,6 +31,14 @@ Built with [Flutter](https://flutter.dev)
 
 ## How to download the APK
 
-- Click on Releases
+- Click on `Busha Test App` under [Releases](https://github.com/egideons/busha_mobile_design_task/releases)
+- You will see `app-release.apk` under Assets
+- Click on it to download the app
+
+or
+
+- [Click here to download from Google Drive](https://drive.google.com/file/d/1U7FZDKb2EPT8kO0O8arxuecicEeJsJKX/view?usp=drivesdk)
 
 ## App Demo
+
+(https://raw.githubusercontent.com/egideons/busha_mobile_design_task/main/path/to/video.mp4)
