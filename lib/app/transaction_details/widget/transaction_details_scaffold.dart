@@ -88,12 +88,15 @@ class TransactionDetailsScaffold extends GetView<TransactionDetailsController> {
               ],
             ),
             const SizedBox(height: kDefaultPadding * 2),
-            launchExplorer(colorScheme, launch: () {
-              UrlLaunchController.launchWebView(
-                Uri.parse("https://google.com"),
-                LaunchMode.externalApplication,
-              );
-            }),
+            launchExplorer(
+              colorScheme,
+              launch: () {
+                UrlLaunchController.launchWebView(
+                  Uri.parse("https://google.com"),
+                  LaunchMode.externalApplication,
+                );
+              },
+            ),
             const SizedBox(height: kDefaultPadding * 4),
           ],
         ),

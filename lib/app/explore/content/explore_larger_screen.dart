@@ -92,35 +92,58 @@ exploreLargerScreen(
                         kSizedBox,
                         sectionHeader(colorScheme, "My assets", onTap: () {}),
                         kHalfSizedBox,
-                        SizedBox(
-                          height: media.height * .56,
-                          child: ListView.separated(
-                            itemCount: 3,
-                            physics: const NeverScrollableScrollPhysics(),
-                            separatorBuilder: (context, index) => kSizedBox,
-                            itemBuilder: (context, index) {
-                              return myAssets(
-                                colorScheme,
-                                onTap: () {
-                                  exploreController.toCurrencyTransactions(
-                                    exploreController.myAssetShortNames[index],
-                                  );
-                                },
-                                assetIcon:
-                                    exploreController.myAssetIcons[index],
-                                assetLongName:
-                                    exploreController.myAssetLongNames[index],
-                                assetShortName:
-                                    exploreController.myAssetShortNames[index],
-                                assetValue:
-                                    exploreController.myAssetValues[index],
-                                assetPercentage:
-                                    exploreController.myAssetPercentages[index],
-                                assetValueIncrease: exploreController
-                                    .myAssetValueIncreases[index],
-                              );
-                            },
-                          ),
+                        Column(
+                          children: [
+                            myAssets(
+                              colorScheme,
+                              onTap: () {
+                                exploreController.toCurrencyTransactions("BTC");
+                              },
+                              assetIcon: Image.asset(
+                                Assets.btcIcon,
+                                fit: BoxFit.contain,
+                                height: 46,
+                                width: 46,
+                              ),
+                              assetLongName: "Bitcoin",
+                              assetShortName: "BTC",
+                              assetValue: "24500000",
+                              assetPercentage: "1.76",
+                              assetValueIncrease: true,
+                            ),
+                            myAssets(
+                              colorScheme,
+                              onTap: () {},
+                              assetIcon: Image.asset(
+                                Assets.ethIcon,
+                                fit: BoxFit.contain,
+                                height: 46,
+                                width: 46,
+                              ),
+                              assetLongName: "Ethereum",
+                              assetShortName: "ETH",
+                              assetValue: "4500",
+                              assetPercentage: "6.76",
+                              assetValueIncrease: false,
+                            ),
+                            myAssets(
+                              colorScheme,
+                              onTap: () {
+                                exploreController.toCurrencyTransactions("XTZ");
+                              },
+                              assetIcon: Image.asset(
+                                Assets.xtzIcon,
+                                fit: BoxFit.contain,
+                                height: 46,
+                                width: 46,
+                              ),
+                              assetLongName: "Tezos",
+                              assetShortName: "xtz",
+                              assetValue: "4500",
+                              assetPercentage: "9.06",
+                              assetValueIncrease: true,
+                            ),
+                          ],
                         ),
                       ],
                     ),

@@ -31,53 +31,6 @@ class ExploreController extends GetxController {
 
   //================ Variables =================//
   var isLoading = false.obs;
-  //My Assets
-  var myAssetIcons = <dynamic>[
-    Image.asset(
-      Assets.btcIcon,
-      fit: BoxFit.contain,
-      height: 46,
-      width: 46,
-    ),
-    Image.asset(
-      Assets.ethIcon,
-      fit: BoxFit.contain,
-      height: 46,
-      width: 46,
-    ),
-    Image.asset(
-      Assets.xtzIcon,
-      fit: BoxFit.contain,
-      height: 46,
-      width: 46,
-    ),
-  ];
-
-  var myAssetLongNames = <String>[
-    "Bitcoin",
-    "Ethereum",
-    "Tezos",
-  ];
-  var myAssetShortNames = <String>[
-    "BTC",
-    "ETH",
-    "XTZ",
-  ];
-  var myAssetValues = <String>[
-    "24500000",
-    "4500",
-    "4500",
-  ];
-  var myAssetPercentages = <String>[
-    "1.76",
-    "6.76",
-    "9.06",
-  ];
-  var myAssetValueIncreases = <bool>[
-    true,
-    false,
-    true,
-  ];
 
   //Today's Top Movers
   var todaysMoversIcon = <dynamic>[
@@ -165,4 +118,7 @@ class ExploreController extends GetxController {
     isLoading.value = false;
     update();
   }
+
+  loadBitcoinLatestBlock() async {}
+  loadTezosLatestBlock() async {}
 }
