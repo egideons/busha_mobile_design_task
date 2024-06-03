@@ -19,7 +19,7 @@ Built with [Flutter](https://flutter.dev)
 - Project duration: 4 Days
 - Features:
   - Supports Light and Dark theme
-  - Supports larger navScreens or landscape mode
+  - Supports Mobile Portrait mode and larger screens or landscape mode
   - Animations
   - Saves login state
   - Saves wallet balance visibility
