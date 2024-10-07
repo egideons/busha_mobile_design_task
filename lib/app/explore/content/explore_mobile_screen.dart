@@ -18,16 +18,16 @@ import '../content/user_wallet_balance.dart';
 
 exploreMobileScreen(
   ColorScheme colorScheme,
-  ExploreController exploreController,
+  ExploreController controller,
   Size media,
 ) {
   return Scaffold(
     backgroundColor: colorScheme.surface,
     appBar: exploreAppBar(colorScheme),
     floatingActionButton: Obx(
-      () => exploreController.isScrollToTopBtnVisible.value
+      () => controller.isScrollToTopBtnVisible.value
           ? FloatingActionButton.small(
-              onPressed: exploreController.scrollToTop,
+              onPressed: controller.scrollToTop,
               foregroundColor: colorScheme.surface,
               backgroundColor: colorScheme.primary,
               child: const Icon(Iconsax.arrow_up_2),
@@ -36,11 +36,11 @@ exploreMobileScreen(
     ),
     body: SafeArea(
       child: Scrollbar(
-        controller: exploreController.scrollController,
+        controller: controller.scrollController,
         child: RefreshIndicator(
-          onRefresh: exploreController.loadData,
+          onRefresh: controller.loadData,
           child: ListView(
-            controller: exploreController.scrollController,
+            controller: controller.scrollController,
             padding: const EdgeInsets.all(10),
             physics: const ScrollPhysics(),
             children: [
@@ -177,12 +177,12 @@ exploreMobileScreen(
                         return todaysTopMovers(
                           media,
                           colorScheme,
-                          assetIcon: exploreController.todaysMoversIcon[index],
+                          assetIcon: controller.todaysMoversIcon[index],
                           assetLongName:
-                              exploreController.todaysMoversLongNames[index],
+                              controller.todaysMoversLongNames[index],
                           assetPercentage:
-                              exploreController.todaysMoversPercentages[index],
-                          assetValueIncrease: exploreController
+                              controller.todaysMoversPercentages[index],
+                          assetValueIncrease: controller
                               .todaysMoversValueIncreases[index],
                         );
                       },
